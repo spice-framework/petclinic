@@ -10,7 +10,8 @@ tool (
 )
 
 require (
-	github.com/spice-framework/spice v0.0.0-20260805175412-383c17744300
+	github.com/spice-framework/spice v0.0.0-20260805185924-ee45e0aa386e
+	github.com/spice-framework/starter-mysql v0.0.0-20260805191832-cc9a2c5034d0
 	github.com/spice-framework/starter-postgres v0.0.0-20260805182646-6310c4b4b95e
 )
 

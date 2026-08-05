@@ -144,6 +144,11 @@ go test -tags=integration -count=1 ./postgres
 
 MySQL generation and execution:
 
+Petclinic consumes the independently versioned
+[`starter-mysql`](https://github.com/spice-framework/starter-mysql) module for
+pool construction, secure configuration, and connection validation. The CI
+workflow pins the MySQL 8.4.11 image by immutable digest.
+
 ```powershell
 go tool github.com/spice-framework/spice/cmd/spice generate --check --target Mysql ./cmd/mysql
 $env:SPICE_PETCLINIC_MYSQL_URL = "mysql://petclinic:petclinic@127.0.0.1:3306/petclinic?tls=disable"

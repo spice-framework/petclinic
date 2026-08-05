@@ -8,7 +8,7 @@ import (
 	"fmt"
 
 	"github.com/spice-framework/spice/lifecycle"
-	spicemysql "github.com/spice-framework/spice/starter/mysql"
+	spicemysql "github.com/spice-framework/starter-mysql"
 )
 
 // @import { Bean } from "github.com/spice-framework/spice/annotation/core"
