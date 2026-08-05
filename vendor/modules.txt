@@ -29,7 +29,7 @@ github.com/jackc/pgx/v5/stdlib
 ## explicit; go 1.19
 github.com/jackc/puddle/v2
 github.com/jackc/puddle/v2/internal/genstack
-# github.com/spice-framework/spice v0.0.0-20260805151308-bb5e8e1ba700
+# github.com/spice-framework/spice v0.0.0-20260805175412-383c17744300
 ## explicit; go 1.26.0
 github.com/spice-framework/spice/annotation
 github.com/spice-framework/spice/annotation/async
@@ -109,10 +109,12 @@ github.com/spice-framework/spice/resource
 github.com/spice-framework/spice/security
 github.com/spice-framework/spice/starter
 github.com/spice-framework/spice/starter/mysql
-github.com/spice-framework/spice/starter/postgres
 github.com/spice-framework/spice/validation
 github.com/spice-framework/spice/view
 github.com/spice-framework/spice/web
+# github.com/spice-framework/starter-postgres v0.0.0-20260805180915-528cd5a1255f
+## explicit; go 1.26.0
+github.com/spice-framework/starter-postgres
 # golang.org/x/mod v0.38.0
 ## explicit; go 1.25.0
 golang.org/x/mod/internal/lazyregexp

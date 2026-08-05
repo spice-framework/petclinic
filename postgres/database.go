@@ -8,7 +8,7 @@ import (
 	"fmt"
 
 	"github.com/spice-framework/spice/lifecycle"
-	spicepostgres "github.com/spice-framework/spice/starter/postgres"
+	spicepostgres "github.com/spice-framework/starter-postgres"
 )
 
 // @import { Bean } from "github.com/spice-framework/spice/annotation/core"

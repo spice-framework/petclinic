@@ -9,7 +9,10 @@ tool (
 	github.com/spice-framework/spice/cmd/spice-annotation-core
 )
 
-require github.com/spice-framework/spice v0.0.0-20260805151308-bb5e8e1ba700
+require (
+	github.com/spice-framework/spice v0.0.0-20260805175412-383c17744300
+	github.com/spice-framework/starter-postgres v0.0.0-20260805180915-528cd5a1255f
+)
 
 require (
 	filippo.io/edwards25519 v1.2.0 // indirect

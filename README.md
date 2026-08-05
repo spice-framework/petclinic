@@ -6,10 +6,11 @@ behavior-first Go port of
 [Spring Petclinic](https://github.com/spring-projects/spring-petclinic) at
 commit `f182358d02e4a68e52bdbabf55ca7800288511e7`.
 
-This repository is intentionally a real consuming module. Its `go.mod` pins an
-immutable Spice version, authorizes the Spice CLI and annotation tool through
-standard Go `tool` directives, and contains no local `replace`. A clone builds,
-tests, generates, and runs without a Spice monorepo checkout.
+This repository is intentionally a real consuming module. Its `go.mod` pins
+immutable Spice and PostgreSQL starter versions, authorizes the Spice CLI and
+annotation tool through standard Go `tool` directives, and contains no local
+`replace`. A clone builds, tests, generates, and runs without a Spice monorepo
+checkout.
 
 ## What it proves
 

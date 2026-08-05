@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	"github.com/spice-framework/spice/migration"
-	spicepostgres "github.com/spice-framework/spice/starter/postgres"
+	spicepostgres "github.com/spice-framework/starter-postgres"
 )
 
 const (
