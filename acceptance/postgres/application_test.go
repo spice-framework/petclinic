@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
+	postgresgen "github.com/spice-framework/petclinic/internal/spicegen/postgres"
 	"github.com/spice-framework/spice/config"
-	postgresgen "github.com/spice-framework/spice/examples/petclinic/internal/spicegen/postgres"
 )
 
 type ApplicationOptions = postgresgen.ApplicationOptions

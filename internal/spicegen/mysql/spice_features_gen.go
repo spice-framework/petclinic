@@ -21,12 +21,12 @@ func configureGeneratedLifecycle(
 	_ = dependencies
 	application.hooks = []spicelifecycle.Hook{
 		{
-			ID:     "spice:symbol:v1|function|57:github.com/spice-framework/spice/examples/petclinic/mysql|0:|12:OpenDatabase",
+			ID:     "spice:symbol:v1|function|42:github.com/spice-framework/petclinic/mysql|0:|12:OpenDatabase",
 			Module: "",
 			Start:  dependencies.openDatabase.Migrate,
 		},
 		{
-			ID:     "spice:symbol:v1|function|64:github.com/spice-framework/spice/examples/petclinic/presentation|0:|9:NewServer",
+			ID:     "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer",
 			Module: "",
 			Start:  dependencies.server.Start,
 			Stop:   dependencies.server.Stop,

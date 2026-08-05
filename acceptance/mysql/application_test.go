@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
+	mysqlgen "github.com/spice-framework/petclinic/internal/spicegen/mysql"
 	"github.com/spice-framework/spice/config"
-	mysqlgen "github.com/spice-framework/spice/examples/petclinic/internal/spicegen/mysql"
 )
 
 type ApplicationOptions = mysqlgen.ApplicationOptions

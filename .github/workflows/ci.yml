@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: petclinic-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Set up exact Go toolchain
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: 1.26.5
+          cache-dependency-path: |
+            go.sum
+            tools/go.sum
+      - name: Download the explicit application graph
+        run: go mod download
+      - name: Download the pinned verification tools
+        run: go -C tools mod download
+      - name: Run the cross-platform repository gate
+        run: go run ./internal/qualitygate
+
+  postgres:
+    name: PostgreSQL 18.4 integration
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:18.4-alpine3.24
+        env:
+          POSTGRES_DB: petclinic
+          POSTGRES_USER: petclinic
+          POSTGRES_PASSWORD: petclinic
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U petclinic -d petclinic"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Set up exact Go toolchain
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: 1.26.5
+          cache-dependency-path: go.sum
+      - name: Download the explicit application graph
+        run: go mod download
+      - name: Exercise the real PostgreSQL workflow
+        env:
+          SPICE_POSTGRES_TEST_URL: postgres://petclinic:petclinic@127.0.0.1:5432/petclinic?sslmode=disable
+        run: go test -tags=integration -race -count=1 ./postgres
+
+  mysql:
+    name: MySQL 8.4.11 integration
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      mysql:
+        image: mysql:8.4.11
+        env:
+          MYSQL_DATABASE: petclinic
+          MYSQL_USER: petclinic
+          MYSQL_PASSWORD: petclinic
+          MYSQL_ROOT_PASSWORD: petclinic-root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd "mysqladmin ping -h 127.0.0.1 -ppetclinic-root"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Set up exact Go toolchain
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: 1.26.5
+          cache-dependency-path: go.sum
+      - name: Download the explicit application graph
+        run: go mod download
+      - name: Exercise the real MySQL workflow
+        env:
+          SPICE_MYSQL_TEST_URL: mysql://petclinic:petclinic@127.0.0.1:3306/petclinic?tls=disable
+        run: go test -tags=integration -race -count=1 ./mysql

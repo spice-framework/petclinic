@@ -3,13 +3,13 @@ package main
 import (
 	"os"
 
-	spiceapp "github.com/spice-framework/spice/examples/petclinic/internal/spicegen/petclinic"
-	_ "github.com/spice-framework/spice/examples/petclinic/memory"
-	_ "github.com/spice-framework/spice/examples/petclinic/model"
-	_ "github.com/spice-framework/spice/examples/petclinic/owner"
-	_ "github.com/spice-framework/spice/examples/petclinic/presentation"
-	_ "github.com/spice-framework/spice/examples/petclinic/system"
-	_ "github.com/spice-framework/spice/examples/petclinic/vet"
+	spiceapp "github.com/spice-framework/petclinic/internal/spicegen/petclinic"
+	_ "github.com/spice-framework/petclinic/memory"
+	_ "github.com/spice-framework/petclinic/model"
+	_ "github.com/spice-framework/petclinic/owner"
+	_ "github.com/spice-framework/petclinic/presentation"
+	_ "github.com/spice-framework/petclinic/system"
+	_ "github.com/spice-framework/petclinic/vet"
 )
 
 // @import { Application } from "github.com/spice-framework/spice/annotation/core"
@@ -21,6 +21,5 @@ import (
 // @Logging
 func main() {
 	// This package-main boundary alone owns the process status.
-	//nolint:forbidigo // Generated Main returns the portable exit code.
 	os.Exit(spiceapp.Main(os.Args[1:]))
 }

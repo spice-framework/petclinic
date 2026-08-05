@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/spice-framework/spice/examples/petclinic/presentation"
+	"github.com/spice-framework/petclinic/presentation"
 	"github.com/spice-framework/spice/i18n"
 	"github.com/spice-framework/spice/view"
 	"github.com/spice-framework/spice/web"

@@ -5,5 +5,5 @@
 
 package spicegen
 
-// ApplicationTargetPetclinic_c48ca98e identifies the generated target selected by spice:symbol:v1|function|51:github.com/spice-framework/spice/examples/petclinic|0:|4:main.
-const ApplicationTargetPetclinic_c48ca98e = "petclinic"
+// ApplicationTargetPetclinic_843dc992 identifies the generated target selected by spice:symbol:v1|function|36:github.com/spice-framework/petclinic|0:|4:main.
+const ApplicationTargetPetclinic_843dc992 = "petclinic"

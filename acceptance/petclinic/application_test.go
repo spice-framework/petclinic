@@ -12,8 +12,8 @@ import (
 	"testing"
 	"time"
 
+	petclinicgen "github.com/spice-framework/petclinic/internal/spicegen/petclinic"
 	"github.com/spice-framework/spice/config"
-	petclinicgen "github.com/spice-framework/spice/examples/petclinic/internal/spicegen/petclinic"
 	"github.com/spice-framework/spice/lifecycle"
 	"github.com/spice-framework/spice/web"
 )

@@ -9,17 +9,17 @@ import (
 	fmt "fmt"
 	http "net/http"
 
-	presentation "github.com/spice-framework/spice/examples/petclinic/presentation"
+	presentation "github.com/spice-framework/petclinic/presentation"
 	spicelifecycle "github.com/spice-framework/spice/lifecycle"
 )
 
-// ConstructMux_c4b2b961 performs the direct construction selected for bean "newMux".
-// Spice source identity: spice:symbol:v1|function|64:github.com/spice-framework/spice/examples/petclinic/presentation|0:|6:NewMux.
-func ConstructMux_c4b2b961() (*http.ServeMux, spicelifecycle.Cleanup, error) {
+// ConstructMux_a18106fd performs the direct construction selected for bean "newMux".
+// Spice source identity: spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux.
+func ConstructMux_a18106fd() (*http.ServeMux, spicelifecycle.Cleanup, error) {
 	value, err := presentation.NewMux()
 	if err != nil {
 		var zero *http.ServeMux
-		return zero, nil, fmt.Errorf("construct bean newMux (*net/http.ServeMux, source spice:symbol:v1|function|64:github.com/spice-framework/spice/examples/petclinic/presentation|0:|6:NewMux): %w", err)
+		return zero, nil, fmt.Errorf("construct bean newMux (*net/http.ServeMux, source spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux): %w", err)
 	}
 	return value, nil, nil
 }

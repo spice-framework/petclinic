@@ -8,19 +8,19 @@ package spicegen
 import (
 	fmt "fmt"
 
-	presentation "github.com/spice-framework/spice/examples/petclinic/presentation"
+	presentation "github.com/spice-framework/petclinic/presentation"
 	i18n "github.com/spice-framework/spice/i18n"
 	spicelifecycle "github.com/spice-framework/spice/lifecycle"
 	view "github.com/spice-framework/spice/view"
 )
 
-// ConstructRenderer_7b5a1f92 performs the direct construction selected for bean "newRenderer".
-// Spice source identity: spice:symbol:v1|function|64:github.com/spice-framework/spice/examples/petclinic/presentation|0:|11:NewRenderer.
-func ConstructRenderer_7b5a1f92(dependency0 *i18n.Catalog) (*view.Renderer, spicelifecycle.Cleanup, error) {
+// ConstructRenderer_81a7c9ee performs the direct construction selected for bean "newRenderer".
+// Spice source identity: spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer.
+func ConstructRenderer_81a7c9ee(dependency0 *i18n.Catalog) (*view.Renderer, spicelifecycle.Cleanup, error) {
 	value, err := presentation.NewRenderer(dependency0)
 	if err != nil {
 		var zero *view.Renderer
-		return zero, nil, fmt.Errorf("construct bean newRenderer (*github.com/spice-framework/spice/view.Renderer, source spice:symbol:v1|function|64:github.com/spice-framework/spice/examples/petclinic/presentation|0:|11:NewRenderer): %w", err)
+		return zero, nil, fmt.Errorf("construct bean newRenderer (*github.com/spice-framework/spice/view.Renderer, source spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer): %w", err)
 	}
 	return value, nil, nil
 }

@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/spice-framework/spice/examples/petclinic/model"
-	"github.com/spice-framework/spice/examples/petclinic/vet"
+	"github.com/spice-framework/petclinic/model"
+	"github.com/spice-framework/petclinic/vet"
 )
 
 // @import { Implements, Repository } from "github.com/spice-framework/spice/annotation/core"

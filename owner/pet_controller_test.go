@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/spice-framework/spice/examples/petclinic/model"
+	"github.com/spice-framework/petclinic/model"
 	"github.com/spice-framework/spice/web"
 )
 

@@ -8,18 +8,18 @@ package spicegen
 import (
 	fmt "fmt"
 
-	owner "github.com/spice-framework/spice/examples/petclinic/owner"
+	owner "github.com/spice-framework/petclinic/owner"
 	i18n "github.com/spice-framework/spice/i18n"
 	spicelifecycle "github.com/spice-framework/spice/lifecycle"
 )
 
-// ConstructController_efd01e9c performs the direct construction selected for bean "controller".
-// Spice source identity: spice:symbol:v1|type|57:github.com/spice-framework/spice/examples/petclinic/owner|0:|10:Controller.
-func ConstructController_efd01e9c(dependency0 owner.Repository, dependency1 *i18n.Catalog) (*owner.Controller, spicelifecycle.Cleanup, error) {
+// ConstructController_b488f01b performs the direct construction selected for bean "controller".
+// Spice source identity: spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|10:Controller.
+func ConstructController_b488f01b(dependency0 owner.Repository, dependency1 *i18n.Catalog) (*owner.Controller, spicelifecycle.Cleanup, error) {
 	value, err := owner.NewController(dependency0, dependency1)
 	if err != nil {
 		var zero *owner.Controller
-		return zero, nil, fmt.Errorf("construct bean controller (*github.com/spice-framework/spice/examples/petclinic/owner.Controller, source spice:symbol:v1|type|57:github.com/spice-framework/spice/examples/petclinic/owner|0:|10:Controller): %w", err)
+		return zero, nil, fmt.Errorf("construct bean controller (*github.com/spice-framework/petclinic/owner.Controller, source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|10:Controller): %w", err)
 	}
 	return value, nil, nil
 }

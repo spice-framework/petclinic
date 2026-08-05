@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/spice-framework/spice/examples/petclinic/model"
-	"github.com/spice-framework/spice/examples/petclinic/owner"
+	"github.com/spice-framework/petclinic/model"
+	"github.com/spice-framework/petclinic/owner"
 )
 
 func TestPostgreSQLPetclinicWorkflow(t *testing.T) {

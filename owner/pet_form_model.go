@@ -1,7 +1,7 @@
 package owner
 
 import (
-	"github.com/spice-framework/spice/examples/petclinic/presentation"
+	"github.com/spice-framework/petclinic/presentation"
 	"github.com/spice-framework/spice/validation"
 )
 

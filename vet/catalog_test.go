@@ -3,7 +3,7 @@ package vet
 import (
 	"testing"
 
-	"github.com/spice-framework/spice/examples/petclinic/presentation"
+	"github.com/spice-framework/petclinic/presentation"
 	"github.com/spice-framework/spice/i18n"
 )
 

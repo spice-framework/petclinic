@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	petclinicModuleID = "github.com/spice-framework/spice/examples/petclinic"
+	petclinicModuleID = "github.com/spice-framework/petclinic"
 	schemaVersion     = 202607280101
 	seedVersion       = 202607280102
 )

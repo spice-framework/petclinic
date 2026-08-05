@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/spice-framework/spice/examples/petclinic/owner"
+	"github.com/spice-framework/petclinic/owner"
 )
 
 // @import { Implements, Repository } from "github.com/spice-framework/spice/annotation/core"

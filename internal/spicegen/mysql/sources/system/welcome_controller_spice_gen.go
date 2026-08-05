@@ -8,18 +8,18 @@ package spicegen
 import (
 	fmt "fmt"
 
-	system "github.com/spice-framework/spice/examples/petclinic/system"
+	system "github.com/spice-framework/petclinic/system"
 	i18n "github.com/spice-framework/spice/i18n"
 	spicelifecycle "github.com/spice-framework/spice/lifecycle"
 )
 
-// ConstructWelcomeController_36e472f5 performs the direct construction selected for bean "welcomeController".
-// Spice source identity: spice:symbol:v1|type|58:github.com/spice-framework/spice/examples/petclinic/system|0:|17:WelcomeController.
-func ConstructWelcomeController_36e472f5(dependency0 *i18n.Catalog) (*system.WelcomeController, spicelifecycle.Cleanup, error) {
+// ConstructWelcomeController_0486b9a4 performs the direct construction selected for bean "welcomeController".
+// Spice source identity: spice:symbol:v1|type|43:github.com/spice-framework/petclinic/system|0:|17:WelcomeController.
+func ConstructWelcomeController_0486b9a4(dependency0 *i18n.Catalog) (*system.WelcomeController, spicelifecycle.Cleanup, error) {
 	value, err := system.NewWelcomeController(dependency0)
 	if err != nil {
 		var zero *system.WelcomeController
-		return zero, nil, fmt.Errorf("construct bean welcomeController (*github.com/spice-framework/spice/examples/petclinic/system.WelcomeController, source spice:symbol:v1|type|58:github.com/spice-framework/spice/examples/petclinic/system|0:|17:WelcomeController): %w", err)
+		return zero, nil, fmt.Errorf("construct bean welcomeController (*github.com/spice-framework/petclinic/system.WelcomeController, source spice:symbol:v1|type|43:github.com/spice-framework/petclinic/system|0:|17:WelcomeController): %w", err)
 	}
 	return value, nil, nil
 }

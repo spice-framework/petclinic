@@ -8,21 +8,21 @@ package spicegen
 import (
 	fmt "fmt"
 
-	owner "github.com/spice-framework/spice/examples/petclinic/owner"
-	postgres "github.com/spice-framework/spice/examples/petclinic/postgres"
+	owner "github.com/spice-framework/petclinic/owner"
+	postgres "github.com/spice-framework/petclinic/postgres"
 	spicelifecycle "github.com/spice-framework/spice/lifecycle"
 )
 
-// ConstructOwnerRepository_3e9989c4 performs the direct construction selected for bean "ownerRepository".
-// Spice source identity: spice:symbol:v1|type|60:github.com/spice-framework/spice/examples/petclinic/postgres|0:|15:OwnerRepository.
-func ConstructOwnerRepository_3e9989c4(dependency0 *postgres.Database) (*postgres.OwnerRepository, spicelifecycle.Cleanup, error) {
+// ConstructOwnerRepository_5cc87725 performs the direct construction selected for bean "ownerRepository".
+// Spice source identity: spice:symbol:v1|type|45:github.com/spice-framework/petclinic/postgres|0:|15:OwnerRepository.
+func ConstructOwnerRepository_5cc87725(dependency0 *postgres.Database) (*postgres.OwnerRepository, spicelifecycle.Cleanup, error) {
 	value, err := postgres.NewOwnerRepository(dependency0)
 	if err != nil {
 		var zero *postgres.OwnerRepository
-		return zero, nil, fmt.Errorf("construct bean ownerRepository (*github.com/spice-framework/spice/examples/petclinic/postgres.OwnerRepository, source spice:symbol:v1|type|60:github.com/spice-framework/spice/examples/petclinic/postgres|0:|15:OwnerRepository): %w", err)
+		return zero, nil, fmt.Errorf("construct bean ownerRepository (*github.com/spice-framework/petclinic/postgres.OwnerRepository, source spice:symbol:v1|type|45:github.com/spice-framework/petclinic/postgres|0:|15:OwnerRepository): %w", err)
 	}
 	return value, nil, nil
 }
 
-// spiceImplementsOwnerRepositoryAsRepository_31569368 identifies the explicit @Implements binding for spice:symbol:v1|type|60:github.com/spice-framework/spice/examples/petclinic/postgres|0:|15:OwnerRepository.
+// spiceImplementsOwnerRepositoryAsRepository_44c7ac9d identifies the explicit @Implements binding for spice:symbol:v1|type|45:github.com/spice-framework/petclinic/postgres|0:|15:OwnerRepository.
 var _ owner.Repository = (*postgres.OwnerRepository)(nil)

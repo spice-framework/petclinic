@@ -8,21 +8,21 @@ package spicegen
 import (
 	fmt "fmt"
 
-	postgres "github.com/spice-framework/spice/examples/petclinic/postgres"
-	vet "github.com/spice-framework/spice/examples/petclinic/vet"
+	postgres "github.com/spice-framework/petclinic/postgres"
+	vet "github.com/spice-framework/petclinic/vet"
 	spicelifecycle "github.com/spice-framework/spice/lifecycle"
 )
 
-// ConstructVetRepository_e94dad1c performs the direct construction selected for bean "vetRepository".
-// Spice source identity: spice:symbol:v1|type|60:github.com/spice-framework/spice/examples/petclinic/postgres|0:|13:VetRepository.
-func ConstructVetRepository_e94dad1c(dependency0 *postgres.Database) (*postgres.VetRepository, spicelifecycle.Cleanup, error) {
+// ConstructVetRepository_777771ec performs the direct construction selected for bean "vetRepository".
+// Spice source identity: spice:symbol:v1|type|45:github.com/spice-framework/petclinic/postgres|0:|13:VetRepository.
+func ConstructVetRepository_777771ec(dependency0 *postgres.Database) (*postgres.VetRepository, spicelifecycle.Cleanup, error) {
 	value, err := postgres.NewVetRepository(dependency0)
 	if err != nil {
 		var zero *postgres.VetRepository
-		return zero, nil, fmt.Errorf("construct bean vetRepository (*github.com/spice-framework/spice/examples/petclinic/postgres.VetRepository, source spice:symbol:v1|type|60:github.com/spice-framework/spice/examples/petclinic/postgres|0:|13:VetRepository): %w", err)
+		return zero, nil, fmt.Errorf("construct bean vetRepository (*github.com/spice-framework/petclinic/postgres.VetRepository, source spice:symbol:v1|type|45:github.com/spice-framework/petclinic/postgres|0:|13:VetRepository): %w", err)
 	}
 	return value, nil, nil
 }
 
-// spiceImplementsVetRepositoryAsRepository_16053349 identifies the explicit @Implements binding for spice:symbol:v1|type|60:github.com/spice-framework/spice/examples/petclinic/postgres|0:|13:VetRepository.
+// spiceImplementsVetRepositoryAsRepository_d7d0190c identifies the explicit @Implements binding for spice:symbol:v1|type|45:github.com/spice-framework/petclinic/postgres|0:|13:VetRepository.
 var _ vet.Repository = (*postgres.VetRepository)(nil)

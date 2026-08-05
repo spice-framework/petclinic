@@ -8,17 +8,17 @@ package spicegen
 import (
 	fmt "fmt"
 
-	postgres "github.com/spice-framework/spice/examples/petclinic/postgres"
+	postgres "github.com/spice-framework/petclinic/postgres"
 	spicelifecycle "github.com/spice-framework/spice/lifecycle"
 )
 
-// ConstructOpenDatabase_af2eac0b performs the direct construction selected for bean "openDatabase".
-// Spice source identity: spice:symbol:v1|function|60:github.com/spice-framework/spice/examples/petclinic/postgres|0:|12:OpenDatabase.
-func ConstructOpenDatabase_af2eac0b(dependency0 postgres.Settings) (*postgres.Database, spicelifecycle.Cleanup, error) {
+// ConstructOpenDatabase_586a5679 performs the direct construction selected for bean "openDatabase".
+// Spice source identity: spice:symbol:v1|function|45:github.com/spice-framework/petclinic/postgres|0:|12:OpenDatabase.
+func ConstructOpenDatabase_586a5679(dependency0 postgres.Settings) (*postgres.Database, spicelifecycle.Cleanup, error) {
 	value, cleanup, err := postgres.OpenDatabase(dependency0)
 	if err != nil {
 		var zero *postgres.Database
-		return zero, nil, fmt.Errorf("construct bean openDatabase (*github.com/spice-framework/spice/examples/petclinic/postgres.Database, source spice:symbol:v1|function|60:github.com/spice-framework/spice/examples/petclinic/postgres|0:|12:OpenDatabase): %w", err)
+		return zero, nil, fmt.Errorf("construct bean openDatabase (*github.com/spice-framework/petclinic/postgres.Database, source spice:symbol:v1|function|45:github.com/spice-framework/petclinic/postgres|0:|12:OpenDatabase): %w", err)
 	}
 	return value, cleanup, nil
 }

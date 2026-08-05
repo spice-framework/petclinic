@@ -3,9 +3,9 @@ package memory
 import (
 	"time"
 
-	"github.com/spice-framework/spice/examples/petclinic/model"
-	"github.com/spice-framework/spice/examples/petclinic/owner"
-	"github.com/spice-framework/spice/examples/petclinic/vet"
+	"github.com/spice-framework/petclinic/model"
+	"github.com/spice-framework/petclinic/owner"
+	"github.com/spice-framework/petclinic/vet"
 )
 
 // @import { Bean } from "github.com/spice-framework/spice/annotation/core"

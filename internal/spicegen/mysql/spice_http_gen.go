@@ -30,7 +30,7 @@ func configureGeneratedHTTP(
 	routeMux := dependencies.mux
 	application.mux = routeMux
 	application.handler = routeMux
-	if _, err := registerGeneratedRouteVetControllerListJSON_bbf7ac05(
+	if _, err := registerGeneratedRouteVetControllerListJSON_fdca0218(
 		ctx,
 		application,
 		options,
@@ -41,7 +41,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteVetControllerListHTML_4eb81548(
+	if _, err := registerGeneratedRouteVetControllerListHTML_828fbbaf(
 		ctx,
 		application,
 		options,
@@ -52,7 +52,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerControllerFind_2cd5c768(
+	if _, err := registerGeneratedRouteOwnerControllerFind_0de86320(
 		ctx,
 		application,
 		options,
@@ -63,7 +63,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerControllerFindForm_554d4e3a(
+	if _, err := registerGeneratedRouteOwnerControllerFindForm_050a87c2(
 		ctx,
 		application,
 		options,
@@ -74,7 +74,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerControllerNewForm_e4501169(
+	if _, err := registerGeneratedRouteOwnerControllerNewForm_f69f43b1(
 		ctx,
 		application,
 		options,
@@ -85,7 +85,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerControllerShow_8423e933(
+	if _, err := registerGeneratedRouteOwnerControllerShow_ad9e8887(
 		ctx,
 		application,
 		options,
@@ -96,7 +96,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerControllerEditForm_34933d55(
+	if _, err := registerGeneratedRouteOwnerControllerEditForm_e5334739(
 		ctx,
 		application,
 		options,
@@ -107,7 +107,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerControllerCreate_e8591fe8(
+	if _, err := registerGeneratedRouteOwnerControllerCreate_ef2cdaad(
 		ctx,
 		application,
 		options,
@@ -118,7 +118,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerControllerUpdate_9ba33272(
+	if _, err := registerGeneratedRouteOwnerControllerUpdate_c4d3d5fb(
 		ctx,
 		application,
 		options,
@@ -129,7 +129,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerPetControllerNewForm_30d451cf(
+	if _, err := registerGeneratedRouteOwnerPetControllerNewForm_4bba896d(
 		ctx,
 		application,
 		options,
@@ -140,7 +140,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerPetControllerEditForm_cd4d645a(
+	if _, err := registerGeneratedRouteOwnerPetControllerEditForm_6096b144(
 		ctx,
 		application,
 		options,
@@ -151,7 +151,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerPetControllerCreate_8c47f4bf(
+	if _, err := registerGeneratedRouteOwnerPetControllerCreate_d9dbb629(
 		ctx,
 		application,
 		options,
@@ -162,7 +162,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerPetControllerUpdate_53ee21b4(
+	if _, err := registerGeneratedRouteOwnerPetControllerUpdate_c26dadf8(
 		ctx,
 		application,
 		options,
@@ -173,7 +173,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerVisitControllerNewForm_d5f9687d(
+	if _, err := registerGeneratedRouteOwnerVisitControllerNewForm_f172c294(
 		ctx,
 		application,
 		options,
@@ -184,7 +184,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteOwnerVisitControllerCreate_f62250e8(
+	if _, err := registerGeneratedRouteOwnerVisitControllerCreate_9ddc8b70(
 		ctx,
 		application,
 		options,
@@ -195,7 +195,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	if _, err := registerGeneratedRouteSystemWelcomeControllerShow_51a573a3(
+	if _, err := registerGeneratedRouteSystemWelcomeControllerShow_84d52311(
 		ctx,
 		application,
 		options,
@@ -206,7 +206,7 @@ func configureGeneratedHTTP(
 	); err != nil {
 		return nil, err
 	}
-	managementChecks, err := spicemanagement.LifecycleChecks(TargetID, "github.com/spice-framework/spice/examples/petclinic/cmd/mysql", application.State)
+	managementChecks, err := spicemanagement.LifecycleChecks(TargetID, "github.com/spice-framework/petclinic/cmd/mysql", application.State)
 	if err != nil {
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("configure management lifecycle checks: %w", err))
 	}
@@ -230,7 +230,7 @@ func configureGeneratedHTTP(
 		Manager: managementManager,
 		Info: map[string]string{
 			"application": TargetID,
-			"module":      "github.com/spice-framework/spice/examples/petclinic/cmd/mysql",
+			"module":      "github.com/spice-framework/petclinic/cmd/mysql",
 			"framework":   "Spice",
 		},
 		Metrics:       managementMetrics,

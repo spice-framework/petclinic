@@ -8,17 +8,17 @@ package spicegen
 import (
 	fmt "fmt"
 
+	postgres "github.com/spice-framework/petclinic/postgres"
 	spiceconfig "github.com/spice-framework/spice/config"
-	postgres "github.com/spice-framework/spice/examples/petclinic/postgres"
 )
 
-// BindSettings_776f212c binds the validated configuration declared by spice:symbol:v1|type|60:github.com/spice-framework/spice/examples/petclinic/postgres|0:|8:Settings.
-func BindSettings_776f212c(configurationSnapshot spiceconfig.Snapshot) (postgres.Settings, error) {
+// BindSettings_d45894e7 binds the validated configuration declared by spice:symbol:v1|type|45:github.com/spice-framework/petclinic/postgres|0:|8:Settings.
+func BindSettings_d45894e7(configurationSnapshot spiceconfig.Snapshot) (postgres.Settings, error) {
 	value := postgres.Settings{}
 	if _, configured := configurationSnapshot.Lookup("petclinic.datasource.url"); configured {
 		rawValue, valueErr := configurationSnapshot.RequiredString("petclinic.datasource.url")
 		if valueErr != nil {
-			return postgres.Settings{}, fmt.Errorf("decode configuration property petclinic.datasource.url for github.com/spice-framework/spice/examples/petclinic/postgres.Settings.URL: %w", valueErr)
+			return postgres.Settings{}, fmt.Errorf("decode configuration property petclinic.datasource.url for github.com/spice-framework/petclinic/postgres.Settings.URL: %w", valueErr)
 		}
 		convertedValue := string(rawValue)
 		value.URL = convertedValue
@@ -26,7 +26,7 @@ func BindSettings_776f212c(configurationSnapshot spiceconfig.Snapshot) (postgres
 	if _, configured := configurationSnapshot.Lookup("petclinic.datasource.allow-insecure"); configured {
 		rawValue, valueErr := configurationSnapshot.Boolean("petclinic.datasource.allow-insecure")
 		if valueErr != nil {
-			return postgres.Settings{}, fmt.Errorf("decode configuration property petclinic.datasource.allow-insecure for github.com/spice-framework/spice/examples/petclinic/postgres.Settings.AllowInsecure: %w", valueErr)
+			return postgres.Settings{}, fmt.Errorf("decode configuration property petclinic.datasource.allow-insecure for github.com/spice-framework/petclinic/postgres.Settings.AllowInsecure: %w", valueErr)
 		}
 		convertedValue := bool(rawValue)
 		value.AllowInsecure = convertedValue

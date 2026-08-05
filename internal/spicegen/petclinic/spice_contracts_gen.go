@@ -11,14 +11,14 @@ import (
 	strings "strings"
 	time "time"
 
+	spiceentrypoint "github.com/spice-framework/petclinic/internal/spicegen/petclinic/sources/_root"
+	memory "github.com/spice-framework/petclinic/memory"
+	owner "github.com/spice-framework/petclinic/owner"
+	presentation "github.com/spice-framework/petclinic/presentation"
+	system "github.com/spice-framework/petclinic/system"
+	vet "github.com/spice-framework/petclinic/vet"
 	spicebean "github.com/spice-framework/spice/bean"
 	spiceconfig "github.com/spice-framework/spice/config"
-	spiceentrypoint "github.com/spice-framework/spice/examples/petclinic/internal/spicegen/petclinic/sources/_root"
-	memory "github.com/spice-framework/spice/examples/petclinic/memory"
-	owner "github.com/spice-framework/spice/examples/petclinic/owner"
-	presentation "github.com/spice-framework/spice/examples/petclinic/presentation"
-	system "github.com/spice-framework/spice/examples/petclinic/system"
-	vet "github.com/spice-framework/spice/examples/petclinic/vet"
 	i18n "github.com/spice-framework/spice/i18n"
 	spiceintercept "github.com/spice-framework/spice/intercept"
 	spicelifecycle "github.com/spice-framework/spice/lifecycle"
@@ -26,7 +26,7 @@ import (
 	spiceweb "github.com/spice-framework/spice/web"
 )
 
-const TargetID = spiceentrypoint.ApplicationTargetPetclinic_c48ca98e
+const TargetID = spiceentrypoint.ApplicationTargetPetclinic_843dc992
 
 const (
 	ExitSuccess = 0

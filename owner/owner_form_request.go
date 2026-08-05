@@ -1,6 +1,6 @@
 package owner
 
-import "github.com/spice-framework/spice/examples/petclinic/model"
+import "github.com/spice-framework/petclinic/model"
 
 // OwnerFormRequest binds only the editable owner fields.
 type OwnerFormRequest struct {

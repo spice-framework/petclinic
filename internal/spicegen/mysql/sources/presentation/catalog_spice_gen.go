@@ -8,18 +8,18 @@ package spicegen
 import (
 	fmt "fmt"
 
-	presentation "github.com/spice-framework/spice/examples/petclinic/presentation"
+	presentation "github.com/spice-framework/petclinic/presentation"
 	i18n "github.com/spice-framework/spice/i18n"
 	spicelifecycle "github.com/spice-framework/spice/lifecycle"
 )
 
-// ConstructCatalog_e82b19a6 performs the direct construction selected for bean "newCatalog".
-// Spice source identity: spice:symbol:v1|function|64:github.com/spice-framework/spice/examples/petclinic/presentation|0:|10:NewCatalog.
-func ConstructCatalog_e82b19a6() (*i18n.Catalog, spicelifecycle.Cleanup, error) {
+// ConstructCatalog_ef758914 performs the direct construction selected for bean "newCatalog".
+// Spice source identity: spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog.
+func ConstructCatalog_ef758914() (*i18n.Catalog, spicelifecycle.Cleanup, error) {
 	value, err := presentation.NewCatalog()
 	if err != nil {
 		var zero *i18n.Catalog
-		return zero, nil, fmt.Errorf("construct bean newCatalog (*github.com/spice-framework/spice/i18n.Catalog, source spice:symbol:v1|function|64:github.com/spice-framework/spice/examples/petclinic/presentation|0:|10:NewCatalog): %w", err)
+		return zero, nil, fmt.Errorf("construct bean newCatalog (*github.com/spice-framework/spice/i18n.Catalog, source spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog): %w", err)
 	}
 	return value, nil, nil
 }
