@@ -75,6 +75,17 @@ analysis, shuffled/race tests, at least 85% business-source coverage,
 vendor-offline builds, generated freshness, and executable checks for all
 three targets.
 
+For an equivalent warm body-edit comparison against Spring Petclinic, first
+prime the reference checkout's Maven dependencies and then run:
+
+```text
+make benchmark-spring SPRING_PETCLINIC=<checkout>
+```
+
+The repository-owned manifest fixes the Spring commit, Spring Boot and Java
+versions, warmups, samples, p90 budgets, and exact source files. The comparison
+runs Maven offline and restores both edited sources even when a build fails.
+
 ## Generate and run
 
 The root target uses only memory and has no external I/O requirement:

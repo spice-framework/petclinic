@@ -1,4 +1,7 @@
-.PHONY: bootstrap check fmt lint security smoke test verify
+.PHONY: benchmark-spring bootstrap check fmt lint security smoke test verify
+
+benchmark-spring:
+	go run ./internal/qualitygate/parity -spring "$(SPRING_PETCLINIC)"
 
 bootstrap:
 	go mod tidy -diff
