@@ -32,10 +32,14 @@ jobs:
           cache-dependency-path: |
             go.sum
             tools/go.sum
-      - name: Download the explicit application graph
-        run: go mod download
-      - name: Download the pinned verification tools
-        run: go -C tools mod download
+      - name: Prime and validate the complete application graph
+        run: |
+          go mod tidy -diff
+          go mod download
+      - name: Prime and validate the pinned verification tools
+        run: |
+          go -C tools mod tidy -diff
+          go -C tools mod download
       - name: Run the cross-platform repository gate
         run: go run ./internal/qualitygate
 

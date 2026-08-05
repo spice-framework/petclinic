@@ -35,6 +35,10 @@ func TestCheckIdentityRejectsLegacyPathAndReplace(t *testing.T) {
 			goMod: "module " + modulePath + "\n\ngo 1.26.0\n",
 		},
 		{
+			name:  "canonical CRLF checkout",
+			goMod: "module " + modulePath + "\r\n\r\ngo 1.26.0\r\n",
+		},
+		{
 			name:    "replace",
 			goMod:   "module " + modulePath + "\n\ngo 1.26.0\n\nreplace example.com/a => ../a\n",
 			wantErr: "replace directives",

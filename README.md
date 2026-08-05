@@ -56,11 +56,18 @@ make verify
 On Windows without `make`, use the equivalent commands:
 
 ```text
+go mod tidy -diff
+go -C tools mod tidy -diff
 go mod download
 go -C tools mod download
 go mod vendor
 go run ./internal/qualitygate
 ```
+
+The two online tidy checks prime the complete selected closure without changing
+the module files, including transitive test-only modules. The quality gate then
+forces `GOPROXY=off` so verification cannot hide a missing bootstrap dependency
+behind a network download.
 
 The cross-platform quality gate enforces formatting, tidy/vendor
 reproducibility, vet, allowlisted linting, nil safety, security and vulnerability

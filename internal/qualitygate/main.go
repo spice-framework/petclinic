@@ -157,7 +157,7 @@ func checkIdentity(root string) error {
 		return fmt.Errorf("read go.mod: %w", err)
 	}
 	content := string(goMod)
-	if !strings.Contains(content, "module "+modulePath+"\n") {
+	if !hasModuleDirective(content, modulePath) {
 		return fmt.Errorf("go.mod does not declare canonical module %s", modulePath)
 	}
 	if strings.Contains(content, "\nreplace ") || strings.Contains(content, "\nreplace (") {
@@ -185,6 +185,15 @@ func checkIdentity(root string) error {
 		}
 		return nil
 	})
+}
+
+func hasModuleDirective(content, expected string) bool {
+	for line := range strings.SplitSeq(content, "\n") {
+		if strings.TrimSpace(line) == "module "+expected {
+			return true
+		}
+	}
+	return false
 }
 
 func identityFile(name string) bool {

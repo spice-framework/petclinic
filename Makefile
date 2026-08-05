@@ -1,6 +1,8 @@
 .PHONY: bootstrap check fmt lint security smoke test verify
 
 bootstrap:
+	go mod tidy -diff
+	go -C tools mod tidy -diff
 	go mod download
 	go -C tools mod download
 	go mod vendor
