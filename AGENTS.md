@@ -10,7 +10,8 @@ module without a local replacement or monorepo-only behavior.
 - Fetch and inspect `origin/main` before work and immediately before pushing.
 - Use bounded, reviewable commits and never overwrite unexpected remote work.
 - Preserve generated source and `.spice/*.manifest.json`; never hand-edit them.
-- Keep the Spice dependency pinned to one immutable released or pseudo-version.
+- Pin Spice core and toolchain independently to immutable released or
+  pseudo-versions.
 - Do not add a local `replace` to the committed module graph.
 
 ## Required verification

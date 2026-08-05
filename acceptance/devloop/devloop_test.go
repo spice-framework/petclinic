@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-const spiceTool = "github.com/spice-framework/spice/cmd/spice"
+const spiceTool = "github.com/spice-framework/toolchain/cmd/spice"
 
 func TestPetclinicDevelopmentWorkflowKeepsLastKnownGoodAndRestarts(
 	t *testing.T,

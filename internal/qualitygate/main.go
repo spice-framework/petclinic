@@ -26,7 +26,7 @@ const (
 	modulePath        = "github.com/spice-framework/petclinic"
 	legacyModulePath  = "github.com/spice-framework/spice/examples/" + "petclinic"
 	minimumCoverage   = 85.0
-	spiceTool         = "github.com/spice-framework/spice/cmd/spice"
+	spiceTool         = "github.com/spice-framework/toolchain/cmd/spice"
 )
 
 var output = log.New(os.Stdout, "", 0)

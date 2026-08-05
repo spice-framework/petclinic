@@ -7,10 +7,12 @@ behavior-first Go port of
 commit `f182358d02e4a68e52bdbabf55ca7800288511e7`.
 
 This repository is intentionally a real consuming module. Its `go.mod` pins
-immutable Spice and PostgreSQL starter versions, authorizes the Spice CLI and
-annotation tool through standard Go `tool` directives, and contains no local
-`replace`. A clone builds, tests, generates, and runs without a Spice monorepo
-checkout.
+the independently versioned Spice core, standalone toolchain, and database
+starters, authorizes the CLI and annotation tool through standard Go `tool`
+directives, and contains no local `replace`. Core owns runtime and annotation
+descriptor APIs; toolchain owns compilation, generation, verification, and
+development executables. A clone builds, tests, generates, and runs without a
+Spice monorepo checkout.
 
 ## What it proves
 
@@ -92,22 +94,22 @@ runs Maven offline and restores both edited sources even when a build fails.
 The root target uses only memory and has no external I/O requirement:
 
 ```text
-go tool github.com/spice-framework/spice/cmd/spice generate --check --target Petclinic .
-go tool github.com/spice-framework/spice/cmd/spice run --target Petclinic . -- -check
+go tool github.com/spice-framework/toolchain/cmd/spice generate --check --target Petclinic .
+go tool github.com/spice-framework/toolchain/cmd/spice run --target Petclinic . -- -check
 ```
 
 Start the web application in PowerShell:
 
 ```powershell
 $env:SPICE_PETCLINIC_ADDRESS = "127.0.0.1:8080"
-go tool github.com/spice-framework/spice/cmd/spice run --target Petclinic .
+go tool github.com/spice-framework/toolchain/cmd/spice run --target Petclinic .
 ```
 
 Or in a POSIX shell:
 
 ```sh
 export SPICE_PETCLINIC_ADDRESS=127.0.0.1:8080
-go tool github.com/spice-framework/spice/cmd/spice run --target Petclinic .
+go tool github.com/spice-framework/toolchain/cmd/spice run --target Petclinic .
 ```
 
 Open `http://127.0.0.1:8080/`. Generated `/actuator/*` routes accept only a
@@ -116,7 +118,7 @@ direct loopback peer and do not trust forwarding headers.
 For the watched development loop:
 
 ```text
-go tool github.com/spice-framework/spice/cmd/spice dev --target Petclinic .
+go tool github.com/spice-framework/toolchain/cmd/spice dev --target Petclinic .
 ```
 
 An invalid annotation produces the same source-positioned compiler/LSP
@@ -129,10 +131,10 @@ retains valid-Go `// @...` comments.
 PostgreSQL generation and execution:
 
 ```powershell
-go tool github.com/spice-framework/spice/cmd/spice generate --check --target Postgres ./cmd/postgres
+go tool github.com/spice-framework/toolchain/cmd/spice generate --check --target Postgres ./cmd/postgres
 $env:SPICE_PETCLINIC_POSTGRES_URL = "postgres://petclinic:petclinic@127.0.0.1:5432/petclinic?sslmode=disable"
 $env:SPICE_PETCLINIC_POSTGRES_ALLOW_INSECURE = "true"
-go tool github.com/spice-framework/spice/cmd/spice run --target Postgres ./cmd/postgres
+go tool github.com/spice-framework/toolchain/cmd/spice run --target Postgres ./cmd/postgres
 ```
 
 Real PostgreSQL repository test:
@@ -150,10 +152,10 @@ pool construction, secure configuration, and connection validation. The CI
 workflow pins the MySQL 8.4.11 image by immutable digest.
 
 ```powershell
-go tool github.com/spice-framework/spice/cmd/spice generate --check --target Mysql ./cmd/mysql
+go tool github.com/spice-framework/toolchain/cmd/spice generate --check --target Mysql ./cmd/mysql
 $env:SPICE_PETCLINIC_MYSQL_URL = "mysql://petclinic:petclinic@127.0.0.1:3306/petclinic?tls=disable"
 $env:SPICE_PETCLINIC_MYSQL_ALLOW_INSECURE = "true"
-go tool github.com/spice-framework/spice/cmd/spice run --target Mysql ./cmd/mysql
+go tool github.com/spice-framework/toolchain/cmd/spice run --target Mysql ./cmd/mysql
 ```
 
 Real MySQL repository test:
