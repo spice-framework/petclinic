@@ -9,7 +9,7 @@ tool (
 	github.com/spice-framework/spice/cmd/spice-annotation-core
 )
 
-require github.com/spice-framework/spice v0.0.0-20260805102701-6d561a789de7
+require github.com/spice-framework/spice v0.0.0-20260805151308-bb5e8e1ba700
 
 require (
 	filippo.io/edwards25519 v1.2.0 // indirect

@@ -29,7 +29,7 @@ github.com/jackc/pgx/v5/stdlib
 ## explicit; go 1.19
 github.com/jackc/puddle/v2
 github.com/jackc/puddle/v2/internal/genstack
-# github.com/spice-framework/spice v0.0.0-20260805102701-6d561a789de7
+# github.com/spice-framework/spice v0.0.0-20260805151308-bb5e8e1ba700
 ## explicit; go 1.26.0
 github.com/spice-framework/spice/annotation
 github.com/spice-framework/spice/annotation/async
@@ -69,6 +69,7 @@ github.com/spice-framework/spice/compiler/diagnostic/adapt
 github.com/spice-framework/spice/compiler/event
 github.com/spice-framework/spice/compiler/generate
 github.com/spice-framework/spice/compiler/graph
+github.com/spice-framework/spice/compiler/internal/moduleenv
 github.com/spice-framework/spice/compiler/lifecycle
 github.com/spice-framework/spice/compiler/load
 github.com/spice-framework/spice/compiler/modulith
