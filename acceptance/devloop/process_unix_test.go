@@ -18,9 +18,12 @@ func configureProcessTree(command *exec.Cmd) {
 func stopProcessTree(t *testing.T, command *exec.Cmd, done <-chan error) {
 	t.Helper()
 	if command.Process != nil {
-		if err := syscall.Kill(-command.Process.Pid, syscall.SIGKILL); err != nil &&
+		// Spice owns application shutdown. Deliver the same termination signal a
+		// real shell or service manager sends so it can interrupt and reap the
+		// application's separate process group before the tool exits.
+		if err := syscall.Kill(-command.Process.Pid, syscall.SIGTERM); err != nil &&
 			!errors.Is(err, os.ErrProcessDone) && !errors.Is(err, syscall.ESRCH) {
-			t.Errorf("kill spice dev process group: %v", err)
+			t.Errorf("stop spice dev process group: %v", err)
 		}
 	}
 	waitForProcess(t, done)
