@@ -98,6 +98,10 @@ func TestPetclinicDevelopmentWorkflowKeepsLastKnownGoodAndRestarts(
 		output,
 		"graceful restart requested for revision "+strconv.Itoa(revision),
 	)
+	// The launcher-started event precedes initialization inside the generated
+	// process. Wait for its runtime readiness event before sending the final
+	// interrupt so Windows cannot race signal-handler installation.
+	waitForTextOccurrences(t, output, `"msg":"Spice application starting"`, 2)
 
 	stopProcessTree(t, command, done)
 	stopped = true
@@ -247,16 +251,31 @@ func (buffer *notifyingBuffer) String() string {
 
 func waitForText(t *testing.T, buffer *notifyingBuffer, expected string) {
 	t.Helper()
+	waitForTextOccurrences(t, buffer, expected, 1)
+}
+
+func waitForTextOccurrences(
+	t *testing.T,
+	buffer *notifyingBuffer,
+	expected string,
+	minimum int,
+) {
+	t.Helper()
 	timeout := time.NewTimer(90 * time.Second)
 	defer timeout.Stop()
 	for {
-		if strings.Contains(buffer.String(), expected) {
+		if strings.Count(buffer.String(), expected) >= minimum {
 			return
 		}
 		select {
 		case <-buffer.updated:
 		case <-timeout.C:
-			t.Fatalf("timed out waiting for %q\n%s", expected, buffer.String())
+			t.Fatalf(
+				"timed out waiting for %d occurrences of %q\n%s",
+				minimum,
+				expected,
+				buffer.String(),
+			)
 		}
 	}
 }
