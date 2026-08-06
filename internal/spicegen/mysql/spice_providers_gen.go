@@ -63,7 +63,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean newCatalog (*github.com/spice-framework/spice/i18n.Catalog, source spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog): %w", err))
 	}
 	if catalogCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog", catalogCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/presentation", "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog", catalogCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean newCatalog (source spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog): %w", err))
 		}
 	}
@@ -78,7 +78,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean newRenderer (*github.com/spice-framework/spice/view.Renderer, source spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer): %w", err))
 	}
 	if rendererCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer", rendererCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/presentation", "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer", rendererCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean newRenderer (source spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer): %w", err))
 		}
 	}
@@ -93,7 +93,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean newMux (*net/http.ServeMux, source spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux): %w", err))
 	}
 	if muxCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux", muxCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/presentation", "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux", muxCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean newMux (source spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux): %w", err))
 		}
 	}
@@ -113,7 +113,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean openDatabase (*github.com/spice-framework/petclinic/mysql.Database, source spice:symbol:v1|function|42:github.com/spice-framework/petclinic/mysql|0:|12:OpenDatabase): %w", err))
 	}
 	if openDatabaseCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|function|42:github.com/spice-framework/petclinic/mysql|0:|12:OpenDatabase", openDatabaseCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/mysql", "spice:symbol:v1|function|42:github.com/spice-framework/petclinic/mysql|0:|12:OpenDatabase", openDatabaseCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean openDatabase (source spice:symbol:v1|function|42:github.com/spice-framework/petclinic/mysql|0:|12:OpenDatabase): %w", err))
 		}
 	}
@@ -128,7 +128,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean vetRepository (*github.com/spice-framework/petclinic/mysql.VetRepository, source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|13:VetRepository): %w", err))
 	}
 	if vetRepositoryCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|13:VetRepository", vetRepositoryCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/mysql", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|13:VetRepository", vetRepositoryCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean vetRepository (source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|13:VetRepository): %w", err))
 		}
 	}
@@ -143,7 +143,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean controller (*github.com/spice-framework/petclinic/vet.Controller, source spice:symbol:v1|type|40:github.com/spice-framework/petclinic/vet|0:|10:Controller): %w", err))
 	}
 	if vetControllerCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|type|40:github.com/spice-framework/petclinic/vet|0:|10:Controller", vetControllerCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/vet", "spice:symbol:v1|type|40:github.com/spice-framework/petclinic/vet|0:|10:Controller", vetControllerCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean controller (source spice:symbol:v1|type|40:github.com/spice-framework/petclinic/vet|0:|10:Controller): %w", err))
 		}
 	}
@@ -158,7 +158,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean ownerRepository (*github.com/spice-framework/petclinic/mysql.OwnerRepository, source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|15:OwnerRepository): %w", err))
 	}
 	if ownerRepositoryCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|15:OwnerRepository", ownerRepositoryCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/mysql", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|15:OwnerRepository", ownerRepositoryCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean ownerRepository (source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|15:OwnerRepository): %w", err))
 		}
 	}
@@ -173,7 +173,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean petTypeRepository (*github.com/spice-framework/petclinic/mysql.PetTypeRepository, source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|17:PetTypeRepository): %w", err))
 	}
 	if petTypeRepositoryCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|17:PetTypeRepository", petTypeRepositoryCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/mysql", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|17:PetTypeRepository", petTypeRepositoryCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean petTypeRepository (source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/mysql|0:|17:PetTypeRepository): %w", err))
 		}
 	}
@@ -188,7 +188,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean controller (*github.com/spice-framework/petclinic/owner.Controller, source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|10:Controller): %w", err))
 	}
 	if ownerControllerCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|10:Controller", ownerControllerCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/owner", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|10:Controller", ownerControllerCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean controller (source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|10:Controller): %w", err))
 		}
 	}
@@ -203,7 +203,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean petController (*github.com/spice-framework/petclinic/owner.PetController, source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|13:PetController): %w", err))
 	}
 	if petControllerCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|13:PetController", petControllerCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/owner", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|13:PetController", petControllerCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean petController (source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|13:PetController): %w", err))
 		}
 	}
@@ -218,7 +218,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean visitController (*github.com/spice-framework/petclinic/owner.VisitController, source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController): %w", err))
 	}
 	if visitControllerCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController", visitControllerCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/owner", "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController", visitControllerCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean visitController (source spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController): %w", err))
 		}
 	}
@@ -233,7 +233,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean welcomeController (*github.com/spice-framework/petclinic/system.WelcomeController, source spice:symbol:v1|type|43:github.com/spice-framework/petclinic/system|0:|17:WelcomeController): %w", err))
 	}
 	if welcomeControllerCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|type|43:github.com/spice-framework/petclinic/system|0:|17:WelcomeController", welcomeControllerCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/system", "spice:symbol:v1|type|43:github.com/spice-framework/petclinic/system|0:|17:WelcomeController", welcomeControllerCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean welcomeController (source spice:symbol:v1|type|43:github.com/spice-framework/petclinic/system|0:|17:WelcomeController): %w", err))
 		}
 	}
@@ -253,7 +253,7 @@ func constructApplicationDependencies(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("construct bean newServer (*github.com/spice-framework/petclinic/presentation.Server, source spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer): %w", err))
 	}
 	if serverCleanup != nil {
-		if err := application.coordinator.RegisterModuleCleanup("", "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer", serverCleanup); err != nil {
+		if err := application.coordinator.RegisterModuleCleanup("github.com/spice-framework/petclinic/presentation", "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer", serverCleanup); err != nil {
 			return nil, application.coordinator.Abort(ctx, fmt.Errorf("register cleanup for bean newServer (source spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer): %w", err))
 		}
 	}

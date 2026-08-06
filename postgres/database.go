@@ -1,4 +1,7 @@
+// @import { Module } from "github.com/spice-framework/spice/annotation/modulith"
+
 // Package postgres provides the PostgreSQL persistence target for Petclinic.
+// @Module(allowedDependencies=["github.com/spice-framework/petclinic/model", "github.com/spice-framework/petclinic/owner", "github.com/spice-framework/petclinic/vet"])
 package postgres
 
 import (

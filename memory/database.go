@@ -1,6 +1,8 @@
 // @import { Bean } from "github.com/spice-framework/spice/annotation/core"
+// @import { Module } from "github.com/spice-framework/spice/annotation/modulith"
 
 // Package memory provides the zero-network Petclinic persistence profile.
+// @Module(allowedDependencies=["github.com/spice-framework/petclinic/model", "github.com/spice-framework/petclinic/owner", "github.com/spice-framework/petclinic/vet"])
 package memory
 
 import (

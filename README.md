@@ -22,6 +22,8 @@ toy dependency-injection graph:
 - owners, pets, visits, pet types, veterinarians, and specialties;
 - deterministic validation and stable query ordering;
 - explicit generated interface bindings and direct constructor calls;
+- explicit, cycle-free Modulith roots for application assembly, domain,
+  presentation, persistence, owners, veterinarians, and system behavior;
 - dependency-first startup, reverse cleanup, and graceful HTTP shutdown;
 - complete owner, pet, visit, veterinarian, and welcome HTTP workflows;
 - responsive embedded views, localization, security headers, and RFC 9457
@@ -37,6 +39,9 @@ the handwritten package/file ownership in `sources/`. Target-wide contracts,
 providers, lifecycle, features, and HTTP wiring are split into named files.
 `.spice/*.manifest.json` records exact source relationships and SHA-256
 ownership, so generation rejects manual edits and stale foreign output.
+Each target also embeds its validated module canvas in the management
+`/actuator/modules` response. Module-owned configuration and lifecycle metadata
+are derived from the same graph rather than inferred at runtime.
 
 Use the standard Go debugger on the complete package. The generated calls are
 ordinary Go: there is no runtime reflection container, package scan, or hidden
@@ -97,6 +102,17 @@ The root target uses only memory and has no external I/O requirement:
 go tool github.com/spice-framework/toolchain/cmd/spice generate --check --target Petclinic .
 go tool github.com/spice-framework/toolchain/cmd/spice run --target Petclinic . -- -check
 ```
+
+Inspect the exact architecture graph without starting the application:
+
+```text
+go tool github.com/spice-framework/toolchain/cmd/spice modules --format=json .
+go tool github.com/spice-framework/toolchain/cmd/spice modules --format=mermaid ./cmd/postgres
+go tool github.com/spice-framework/toolchain/cmd/spice modules --format=plantuml ./cmd/mysql
+```
+
+The acceptance suite requires all three graphs to contain exactly seven
+assigned modules, no cycles, and no unassigned packages.
 
 Start the web application in PowerShell:
 

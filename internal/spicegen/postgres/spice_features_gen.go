@@ -22,12 +22,12 @@ func configureGeneratedLifecycle(
 	application.hooks = []spicelifecycle.Hook{
 		{
 			ID:     "spice:symbol:v1|function|45:github.com/spice-framework/petclinic/postgres|0:|12:OpenDatabase",
-			Module: "",
+			Module: "github.com/spice-framework/petclinic/postgres",
 			Start:  dependencies.openDatabase.Migrate,
 		},
 		{
 			ID:     "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer",
-			Module: "",
+			Module: "github.com/spice-framework/petclinic/presentation",
 			Start:  dependencies.server.Start,
 			Stop:   dependencies.server.Stop,
 		},

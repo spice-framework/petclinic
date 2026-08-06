@@ -1,9 +1,14 @@
+// @import { Module } from "github.com/spice-framework/spice/annotation/modulith"
+
+// Package main assembles the MySQL Petclinic application.
+// @Module(allowedDependencies=["github.com/spice-framework/petclinic/model", "github.com/spice-framework/petclinic/mysql", "github.com/spice-framework/petclinic/owner", "github.com/spice-framework/petclinic/presentation", "github.com/spice-framework/petclinic/system", "github.com/spice-framework/petclinic/vet"])
 package main
 
 import (
 	"os"
 
 	spiceapp "github.com/spice-framework/petclinic/internal/spicegen/mysql"
+	_ "github.com/spice-framework/petclinic/model"
 	_ "github.com/spice-framework/petclinic/mysql"
 	_ "github.com/spice-framework/petclinic/owner"
 	_ "github.com/spice-framework/petclinic/presentation"

@@ -1,4 +1,7 @@
+// @import { Module } from "github.com/spice-framework/spice/annotation/modulith"
+
 // Package owner owns Petclinic owners, pets, visits, and pet types.
+// @Module(allowedDependencies=["github.com/spice-framework/petclinic/model", "github.com/spice-framework/petclinic/presentation"])
 package owner
 
 import (

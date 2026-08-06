@@ -1,3 +1,7 @@
+// @import { Module } from "github.com/spice-framework/spice/annotation/modulith"
+
+// Package main assembles the zero-network Petclinic application.
+// @Module(allowedDependencies=["github.com/spice-framework/petclinic/memory", "github.com/spice-framework/petclinic/model", "github.com/spice-framework/petclinic/owner", "github.com/spice-framework/petclinic/presentation", "github.com/spice-framework/petclinic/system", "github.com/spice-framework/petclinic/vet"])
 package main
 
 import (

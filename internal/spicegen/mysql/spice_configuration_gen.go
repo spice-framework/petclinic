@@ -13,6 +13,7 @@ func ConfigurationSchema() (spiceconfig.Schema, error) {
 		spiceconfig.Property{
 			Key:         "petclinic.datasource.url",
 			Kind:        spiceconfig.KindString,
+			Module:      "github.com/spice-framework/petclinic/mysql",
 			Environment: "SPICE_PETCLINIC_MYSQL_URL",
 			Required:    true,
 			Secret:      true,
@@ -20,6 +21,7 @@ func ConfigurationSchema() (spiceconfig.Schema, error) {
 		spiceconfig.Property{
 			Key:         "petclinic.datasource.allow-insecure",
 			Kind:        spiceconfig.KindBoolean,
+			Module:      "github.com/spice-framework/petclinic/mysql",
 			Environment: "SPICE_PETCLINIC_MYSQL_ALLOW_INSECURE",
 			Default:     "false",
 			HasDefault:  true,
@@ -27,6 +29,7 @@ func ConfigurationSchema() (spiceconfig.Schema, error) {
 		spiceconfig.Property{
 			Key:         "petclinic.server.address",
 			Kind:        spiceconfig.KindString,
+			Module:      "github.com/spice-framework/petclinic/presentation",
 			Environment: "SPICE_PETCLINIC_ADDRESS",
 			Default:     "127.0.0.1:8080",
 			HasDefault:  true,
@@ -34,24 +37,28 @@ func ConfigurationSchema() (spiceconfig.Schema, error) {
 		spiceconfig.Property{
 			Key:        "petclinic.server.read-header-timeout",
 			Kind:       spiceconfig.KindDuration,
+			Module:     "github.com/spice-framework/petclinic/presentation",
 			Default:    "5s",
 			HasDefault: true,
 		},
 		spiceconfig.Property{
 			Key:        "petclinic.server.read-timeout",
 			Kind:       spiceconfig.KindDuration,
+			Module:     "github.com/spice-framework/petclinic/presentation",
 			Default:    "15s",
 			HasDefault: true,
 		},
 		spiceconfig.Property{
 			Key:        "petclinic.server.write-timeout",
 			Kind:       spiceconfig.KindDuration,
+			Module:     "github.com/spice-framework/petclinic/presentation",
 			Default:    "15s",
 			HasDefault: true,
 		},
 		spiceconfig.Property{
 			Key:        "petclinic.server.idle-timeout",
 			Kind:       spiceconfig.KindDuration,
+			Module:     "github.com/spice-framework/petclinic/presentation",
 			Default:    "60s",
 			HasDefault: true,
 		},

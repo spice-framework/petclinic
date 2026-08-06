@@ -1,9 +1,14 @@
+// @import { Module } from "github.com/spice-framework/spice/annotation/modulith"
+
+// Package main assembles the PostgreSQL Petclinic application.
+// @Module(allowedDependencies=["github.com/spice-framework/petclinic/model", "github.com/spice-framework/petclinic/owner", "github.com/spice-framework/petclinic/postgres", "github.com/spice-framework/petclinic/presentation", "github.com/spice-framework/petclinic/system", "github.com/spice-framework/petclinic/vet"])
 package main
 
 import (
 	"os"
 
 	spiceapp "github.com/spice-framework/petclinic/internal/spicegen/postgres"
+	_ "github.com/spice-framework/petclinic/model"
 	_ "github.com/spice-framework/petclinic/owner"
 	_ "github.com/spice-framework/petclinic/postgres"
 	_ "github.com/spice-framework/petclinic/presentation"

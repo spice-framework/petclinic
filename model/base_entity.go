@@ -1,4 +1,7 @@
+// @import { Module } from "github.com/spice-framework/spice/annotation/modulith"
+
 // Package model contains the shared Petclinic domain building blocks.
+// @Module
 package model
 
 // BaseEntity gives persistent Petclinic entities a stable identity. A zero ID

@@ -28,7 +28,7 @@ func registerGeneratedRouteSystemWelcomeControllerShow_84d52311(
 	_ = configurationSnapshot
 	_ = dependencies
 	_ = httpObservers
-	routeObservation0, routeObservationErr0 := spiceweb.ObservationMiddleware(spiceweb.RouteMetadata{ID: "spice:symbol:v1|method|43:github.com/spice-framework/petclinic/system|17:WelcomeController|4:Show", Module: "", Method: "GET", Pattern: "/"}, httpObservers...)
+	routeObservation0, routeObservationErr0 := spiceweb.ObservationMiddleware(spiceweb.RouteMetadata{ID: "spice:symbol:v1|method|43:github.com/spice-framework/petclinic/system|17:WelcomeController|4:Show", Module: "github.com/spice-framework/petclinic/system", Method: "GET", Pattern: "/"}, httpObservers...)
 	if routeObservationErr0 != nil {
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("configure generated route GET / observation: %w", routeObservationErr0))
 	}

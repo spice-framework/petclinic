@@ -1,4 +1,7 @@
+// @import { Module } from "github.com/spice-framework/spice/annotation/modulith"
+
 // Package presentation owns Petclinic's HTTP presentation infrastructure.
+// @Module
 package presentation
 
 import "net/http"

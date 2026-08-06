@@ -27,7 +27,7 @@ func registerGeneratedRouteOwnerVisitControllerCreate_9ddc8b70(
 	_ = configurationSnapshot
 	_ = dependencies
 	_ = httpObservers
-	routeObservation0, routeObservationErr0 := spiceweb.ObservationMiddleware(spiceweb.RouteMetadata{ID: "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|6:Create", Module: "", Method: "POST", Pattern: "/owners/{ownerId}/pets/{petId}/visits/new"}, httpObservers...)
+	routeObservation0, routeObservationErr0 := spiceweb.ObservationMiddleware(spiceweb.RouteMetadata{ID: "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|6:Create", Module: "github.com/spice-framework/petclinic/owner", Method: "POST", Pattern: "/owners/{ownerId}/pets/{petId}/visits/new"}, httpObservers...)
 	if routeObservationErr0 != nil {
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("configure generated route POST /owners/{ownerId}/pets/{petId}/visits/new observation: %w", routeObservationErr0))
 	}

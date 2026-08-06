@@ -1,4 +1,7 @@
+// @import { Module } from "github.com/spice-framework/spice/annotation/modulith"
+
 // Package system owns application-wide Petclinic web behavior.
+// @Module(allowedDependencies=["github.com/spice-framework/petclinic/presentation"])
 package system
 
 import (

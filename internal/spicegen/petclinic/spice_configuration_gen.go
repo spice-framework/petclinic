@@ -13,6 +13,7 @@ func ConfigurationSchema() (spiceconfig.Schema, error) {
 		spiceconfig.Property{
 			Key:         "petclinic.server.address",
 			Kind:        spiceconfig.KindString,
+			Module:      "github.com/spice-framework/petclinic/presentation",
 			Environment: "SPICE_PETCLINIC_ADDRESS",
 			Default:     "127.0.0.1:8080",
 			HasDefault:  true,
@@ -20,24 +21,28 @@ func ConfigurationSchema() (spiceconfig.Schema, error) {
 		spiceconfig.Property{
 			Key:        "petclinic.server.read-header-timeout",
 			Kind:       spiceconfig.KindDuration,
+			Module:     "github.com/spice-framework/petclinic/presentation",
 			Default:    "5s",
 			HasDefault: true,
 		},
 		spiceconfig.Property{
 			Key:        "petclinic.server.read-timeout",
 			Kind:       spiceconfig.KindDuration,
+			Module:     "github.com/spice-framework/petclinic/presentation",
 			Default:    "15s",
 			HasDefault: true,
 		},
 		spiceconfig.Property{
 			Key:        "petclinic.server.write-timeout",
 			Kind:       spiceconfig.KindDuration,
+			Module:     "github.com/spice-framework/petclinic/presentation",
 			Default:    "15s",
 			HasDefault: true,
 		},
 		spiceconfig.Property{
 			Key:        "petclinic.server.idle-timeout",
 			Kind:       spiceconfig.KindDuration,
+			Module:     "github.com/spice-framework/petclinic/presentation",
 			Default:    "60s",
 			HasDefault: true,
 		},

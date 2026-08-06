@@ -219,8 +219,97 @@ func configureGeneratedHTTP(
 		return nil, application.coordinator.Abort(ctx, fmt.Errorf("configure management configuration report: %w", err))
 	}
 	managementModules, err := spicemanagement.NewModuleReport(
-		[]spicemanagement.ModuleDefinition{},
-		[]spicemanagement.ModuleEdge{},
+		[]spicemanagement.ModuleDefinition{
+			{
+				ID:          "github.com/spice-framework/petclinic/cmd/mysql",
+				RootPackage: "github.com/spice-framework/petclinic/cmd/mysql",
+				Packages: []string{
+					"github.com/spice-framework/petclinic/cmd/mysql",
+				},
+				AllowedDependencies: []string{
+					"github.com/spice-framework/petclinic/model",
+					"github.com/spice-framework/petclinic/mysql",
+					"github.com/spice-framework/petclinic/owner",
+					"github.com/spice-framework/petclinic/presentation",
+					"github.com/spice-framework/petclinic/system",
+					"github.com/spice-framework/petclinic/vet",
+				},
+			},
+			{
+				ID:          "github.com/spice-framework/petclinic/model",
+				RootPackage: "github.com/spice-framework/petclinic/model",
+				Packages: []string{
+					"github.com/spice-framework/petclinic/model",
+				},
+			},
+			{
+				ID:          "github.com/spice-framework/petclinic/mysql",
+				RootPackage: "github.com/spice-framework/petclinic/mysql",
+				Packages: []string{
+					"github.com/spice-framework/petclinic/mysql",
+				},
+				AllowedDependencies: []string{
+					"github.com/spice-framework/petclinic/model",
+					"github.com/spice-framework/petclinic/owner",
+					"github.com/spice-framework/petclinic/vet",
+				},
+			},
+			{
+				ID:          "github.com/spice-framework/petclinic/owner",
+				RootPackage: "github.com/spice-framework/petclinic/owner",
+				Packages: []string{
+					"github.com/spice-framework/petclinic/owner",
+				},
+				AllowedDependencies: []string{
+					"github.com/spice-framework/petclinic/model",
+					"github.com/spice-framework/petclinic/presentation",
+				},
+			},
+			{
+				ID:          "github.com/spice-framework/petclinic/presentation",
+				RootPackage: "github.com/spice-framework/petclinic/presentation",
+				Packages: []string{
+					"github.com/spice-framework/petclinic/presentation",
+				},
+			},
+			{
+				ID:          "github.com/spice-framework/petclinic/system",
+				RootPackage: "github.com/spice-framework/petclinic/system",
+				Packages: []string{
+					"github.com/spice-framework/petclinic/system",
+				},
+				AllowedDependencies: []string{
+					"github.com/spice-framework/petclinic/presentation",
+				},
+			},
+			{
+				ID:          "github.com/spice-framework/petclinic/vet",
+				RootPackage: "github.com/spice-framework/petclinic/vet",
+				Packages: []string{
+					"github.com/spice-framework/petclinic/vet",
+				},
+				AllowedDependencies: []string{
+					"github.com/spice-framework/petclinic/model",
+					"github.com/spice-framework/petclinic/presentation",
+				},
+			},
+		},
+		[]spicemanagement.ModuleEdge{
+			{FromModule: "github.com/spice-framework/petclinic/cmd/mysql", ToModule: "github.com/spice-framework/petclinic/model", API: "default", FromPackage: "github.com/spice-framework/petclinic/cmd/mysql", ToPackage: "github.com/spice-framework/petclinic/model"},
+			{FromModule: "github.com/spice-framework/petclinic/cmd/mysql", ToModule: "github.com/spice-framework/petclinic/mysql", API: "default", FromPackage: "github.com/spice-framework/petclinic/cmd/mysql", ToPackage: "github.com/spice-framework/petclinic/mysql"},
+			{FromModule: "github.com/spice-framework/petclinic/cmd/mysql", ToModule: "github.com/spice-framework/petclinic/owner", API: "default", FromPackage: "github.com/spice-framework/petclinic/cmd/mysql", ToPackage: "github.com/spice-framework/petclinic/owner"},
+			{FromModule: "github.com/spice-framework/petclinic/cmd/mysql", ToModule: "github.com/spice-framework/petclinic/presentation", API: "default", FromPackage: "github.com/spice-framework/petclinic/cmd/mysql", ToPackage: "github.com/spice-framework/petclinic/presentation"},
+			{FromModule: "github.com/spice-framework/petclinic/cmd/mysql", ToModule: "github.com/spice-framework/petclinic/system", API: "default", FromPackage: "github.com/spice-framework/petclinic/cmd/mysql", ToPackage: "github.com/spice-framework/petclinic/system"},
+			{FromModule: "github.com/spice-framework/petclinic/cmd/mysql", ToModule: "github.com/spice-framework/petclinic/vet", API: "default", FromPackage: "github.com/spice-framework/petclinic/cmd/mysql", ToPackage: "github.com/spice-framework/petclinic/vet"},
+			{FromModule: "github.com/spice-framework/petclinic/mysql", ToModule: "github.com/spice-framework/petclinic/model", API: "default", FromPackage: "github.com/spice-framework/petclinic/mysql", ToPackage: "github.com/spice-framework/petclinic/model"},
+			{FromModule: "github.com/spice-framework/petclinic/mysql", ToModule: "github.com/spice-framework/petclinic/owner", API: "default", FromPackage: "github.com/spice-framework/petclinic/mysql", ToPackage: "github.com/spice-framework/petclinic/owner"},
+			{FromModule: "github.com/spice-framework/petclinic/mysql", ToModule: "github.com/spice-framework/petclinic/vet", API: "default", FromPackage: "github.com/spice-framework/petclinic/mysql", ToPackage: "github.com/spice-framework/petclinic/vet"},
+			{FromModule: "github.com/spice-framework/petclinic/owner", ToModule: "github.com/spice-framework/petclinic/model", API: "default", FromPackage: "github.com/spice-framework/petclinic/owner", ToPackage: "github.com/spice-framework/petclinic/model"},
+			{FromModule: "github.com/spice-framework/petclinic/owner", ToModule: "github.com/spice-framework/petclinic/presentation", API: "default", FromPackage: "github.com/spice-framework/petclinic/owner", ToPackage: "github.com/spice-framework/petclinic/presentation"},
+			{FromModule: "github.com/spice-framework/petclinic/system", ToModule: "github.com/spice-framework/petclinic/presentation", API: "default", FromPackage: "github.com/spice-framework/petclinic/system", ToPackage: "github.com/spice-framework/petclinic/presentation"},
+			{FromModule: "github.com/spice-framework/petclinic/vet", ToModule: "github.com/spice-framework/petclinic/model", API: "default", FromPackage: "github.com/spice-framework/petclinic/vet", ToPackage: "github.com/spice-framework/petclinic/model"},
+			{FromModule: "github.com/spice-framework/petclinic/vet", ToModule: "github.com/spice-framework/petclinic/presentation", API: "default", FromPackage: "github.com/spice-framework/petclinic/vet", ToPackage: "github.com/spice-framework/petclinic/presentation"},
+		},
 		[]string{},
 	)
 	if err != nil {
