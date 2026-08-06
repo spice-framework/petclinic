@@ -1,4 +1,4 @@
-.PHONY: benchmark-spring bootstrap check fmt lint security smoke test verify
+.PHONY: benchmark-spring bootstrap check compatibility fmt lint security smoke test verify
 
 benchmark-spring:
 	go run ./internal/qualitygate/parity -spring "$(SPRING_PETCLINIC)"
@@ -12,6 +12,9 @@ bootstrap:
 
 check:
 	go run ./internal/qualitygate -mode=check
+
+compatibility:
+	go run -mod=readonly ./internal/corecompat -line=all
 
 fmt:
 	go run ./internal/qualitygate -mode=fmt

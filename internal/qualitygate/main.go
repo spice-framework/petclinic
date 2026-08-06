@@ -103,6 +103,16 @@ func run(ctx context.Context, root, mode string) error {
 			{"business coverage", func() error { return coverage(ctx, root) }},
 			{"offline vendor", func() error { return offline(ctx, root) }},
 			{"Spice targets", func() error { return spiceTargets(ctx, root) }},
+			{"Spice core and toolchain compatibility", func() error {
+				return networkGoCommand(
+					ctx,
+					root,
+					"run",
+					"-mod=readonly",
+					"./internal/corecompat",
+					"-line=all",
+				)
+			}},
 		})
 	default:
 		return fmt.Errorf("unknown mode %q", mode)
@@ -613,6 +623,22 @@ func capture(
 	return stdout.String(), nil
 }
 
+func networkGoCommand(ctx context.Context, directory string, arguments ...string) error {
+	// This is the sole network-capable quality-gate subprocess. The compatibility
+	// runner resolves and authenticates exact repository-owned module versions,
+	// then performs every acceptance operation with GOPROXY=off.
+	// #nosec G204,G702 -- arguments are fixed repository-owned values.
+	cmd := exec.CommandContext(ctx, "go", arguments...)
+	cmd.Dir = directory
+	cmd.Env = onlineEnvironment()
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	if err := cmd.Run(); err != nil {
+		return fmt.Errorf("go %s: %w", strings.Join(arguments, " "), err)
+	}
+	return nil
+}
+
 func mergedEnvironment(overrides map[string]string) []string {
 	values := map[string]string{
 		"GOWORK":      "off",
@@ -621,6 +647,29 @@ func mergedEnvironment(overrides map[string]string) []string {
 		"GOTOOLCHAIN": "local",
 	}
 	maps.Copy(values, overrides)
+	result := make([]string, 0, len(os.Environ())+len(values))
+	for _, entry := range os.Environ() {
+		key, _, found := strings.Cut(entry, "=")
+		if !found {
+			continue
+		}
+		if _, replaced := values[strings.ToUpper(key)]; !replaced {
+			result = append(result, entry)
+		}
+	}
+	for key, value := range values {
+		result = append(result, key+"="+value)
+	}
+	slices.Sort(result)
+	return result
+}
+
+func onlineEnvironment() []string {
+	values := map[string]string{
+		"GOWORK":      "off",
+		"GOFLAGS":     "",
+		"GOTOOLCHAIN": "local",
+	}
 	result := make([]string, 0, len(os.Environ())+len(values))
 	for _, entry := range os.Environ() {
 		key, _, found := strings.Cut(entry, "=")
