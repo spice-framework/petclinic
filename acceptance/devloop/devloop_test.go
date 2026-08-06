@@ -73,13 +73,26 @@ func TestPetclinicDevelopmentWorkflowKeepsLastKnownGoodAndRestarts(
 	if err := os.WriteFile(mainPath, []byte(broken), 0o600); err != nil {
 		t.Fatalf("WriteFile(broken main.go) error = %v", err)
 	}
-	waitForText(t, output, "revision 2 failed")
+	failedRevision := waitForRevision(
+		t,
+		output,
+		"spice dev: revision ",
+		" failed:",
+		2,
+	)
+	waitForText(t, output, "annotation @Unknown is not imported")
 	waitForText(t, output, "last-known-good revision 1")
 
 	if err := os.WriteFile(mainPath, original, 0o600); err != nil {
 		t.Fatalf("WriteFile(fixed main.go) error = %v", err)
 	}
-	revision := waitForRevision(t, output, "application started (revision ", 3)
+	revision := waitForRevision(
+		t,
+		output,
+		"application started (revision ",
+		")",
+		failedRevision+1,
+	)
 	waitForText(
 		t,
 		output,
@@ -252,35 +265,37 @@ func waitForRevision(
 	t *testing.T,
 	buffer *notifyingBuffer,
 	prefix string,
+	suffix string,
 	minimum int,
 ) int {
 	t.Helper()
 	timeout := time.NewTimer(90 * time.Second)
 	defer timeout.Stop()
 	for {
-		if revision := matchingRevision(buffer.String(), prefix, minimum); revision != 0 {
+		if revision := matchingRevision(buffer.String(), prefix, suffix, minimum); revision != 0 {
 			return revision
 		}
 		select {
 		case <-buffer.updated:
 		case <-timeout.C:
 			t.Fatalf(
-				"timed out waiting for %s%d+)\n%s",
+				"timed out waiting for %s%d+%s\n%s",
 				prefix,
 				minimum,
+				suffix,
 				buffer.String(),
 			)
 		}
 	}
 }
 
-func matchingRevision(output, prefix string, minimum int) int {
+func matchingRevision(output, prefix, suffix string, minimum int) int {
 	for remainder := output; ; {
 		_, after, found := strings.Cut(remainder, prefix)
 		if !found {
 			return 0
 		}
-		digits, rest, found := strings.Cut(after, ")")
+		digits, rest, found := strings.Cut(after, suffix)
 		if found {
 			revision, err := strconv.Atoi(digits)
 			if err == nil && revision >= minimum {
@@ -300,17 +315,58 @@ func TestMatchingRevision(t *testing.T) {
 	for _, test := range []struct {
 		name    string
 		output  string
+		prefix  string
+		suffix  string
 		minimum int
 		want    int
 	}{
-		{name: "matching", output: "application started (revision 4)", minimum: 3, want: 4},
-		{name: "below minimum", output: "application started (revision 2)", minimum: 3},
-		{name: "malformed", output: "application started (revision next)", minimum: 3},
-		{name: "later match", output: "application started (revision 2)\napplication started (revision 5)", minimum: 3, want: 5},
+		{
+			name:    "application revision",
+			output:  "application started (revision 4)",
+			prefix:  "application started (revision ",
+			suffix:  ")",
+			minimum: 3,
+			want:    4,
+		},
+		{
+			name:    "failed revision after discarded revision",
+			output:  "spice dev: discarded obsolete revision 2\nspice dev: revision 3 failed: invalid annotation",
+			prefix:  "spice dev: revision ",
+			suffix:  " failed:",
+			minimum: 2,
+			want:    3,
+		},
+		{
+			name:    "below minimum",
+			output:  "application started (revision 2)",
+			prefix:  "application started (revision ",
+			suffix:  ")",
+			minimum: 3,
+		},
+		{
+			name:    "malformed",
+			output:  "application started (revision next)",
+			prefix:  "application started (revision ",
+			suffix:  ")",
+			minimum: 3,
+		},
+		{
+			name:    "later match",
+			output:  "application started (revision 2)\napplication started (revision 5)",
+			prefix:  "application started (revision ",
+			suffix:  ")",
+			minimum: 3,
+			want:    5,
+		},
 	} {
 		t.Run(test.name, func(t *testing.T) {
 			t.Parallel()
-			if got := matchingRevision(test.output, "application started (revision ", test.minimum); got != test.want {
+			if got := matchingRevision(
+				test.output,
+				test.prefix,
+				test.suffix,
+				test.minimum,
+			); got != test.want {
 				t.Fatalf("matchingRevision() = %d, want %d", got, test.want)
 			}
 		})
