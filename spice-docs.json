@@ -1,0 +1,37 @@
+{
+  "$schema": "https://spiceframework.dev/schemas/spice-docs.schema.json",
+  "schema": 1,
+  "product": {
+    "id": "petclinic",
+    "title": "Petclinic",
+    "family": "example",
+    "summary": "A reference Spice application proving generated application composition, database starters, and external-consumer ergonomics.",
+    "maturity": "preview",
+    "audience": [
+      "application-developer",
+      "evaluator"
+    ]
+  },
+  "content": [
+    {
+      "source": "README.md",
+      "route": "index",
+      "kind": "example",
+      "order": 0,
+      "search": true
+    }
+  ],
+  "snippets": [
+    {
+      "root": ".",
+      "include": [
+        "**/*.go"
+      ],
+      "exclude": [
+        "vendor/**",
+        "internal/spicegen/**",
+        ".generated/**"
+      ]
+    }
+  ]
+}
