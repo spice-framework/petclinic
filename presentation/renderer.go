@@ -10,14 +10,10 @@ import (
 	"github.com/spice-framework/spice/web"
 )
 
-// @import { Bean } from "github.com/spice-framework/spice/annotation/core"
-
 //go:embed templates/*.html
 var templates embed.FS
 
 // NewRenderer parses all Petclinic templates once during construction.
-//
-// @Bean
 func NewRenderer(catalog *i18n.Catalog) (*view.Renderer, error) {
 	return view.Parse(
 		templates,

@@ -1086,7 +1086,9 @@ func TestGeneratedPetclinicLifecycleAndTypedComponents(t *testing.T) {
 		t.Fatal(err)
 	}
 	components := application.Components()
-	if components.PetclinicDatabase == nil ||
+	if components.MemoryConfiguration == nil ||
+		components.PresentationConfiguration == nil ||
+		components.PetclinicDatabase == nil ||
 		components.OwnerRepository == nil ||
 		components.PetTypeRepository == nil ||
 		components.VetRepository == nil ||

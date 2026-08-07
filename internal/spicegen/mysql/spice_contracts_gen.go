@@ -37,24 +37,28 @@ const (
 // Components is a typed snapshot of constructed singleton beans.
 // It performs no reflection or string-based lookup.
 type Components struct {
-	// Catalog is bean "newCatalog".
-	Catalog *i18n.Catalog
-	// Renderer is bean "newRenderer".
-	Renderer *spiceview.Renderer
-	// Mux is bean "newMux".
-	Mux *http.ServeMux
+	// MysqlConfiguration is bean "configuration".
+	MysqlConfiguration *mysql.Configuration
 	// Settings is bean "Settings".
 	Settings mysql.Settings
-	// OpenDatabase is bean "openDatabase".
-	OpenDatabase *mysql.Database
+	// Database is bean "database".
+	Database *mysql.Database
 	// VetRepository is bean "vetRepository".
 	VetRepository *mysql.VetRepository
-	// VetController is bean "controller".
-	VetController *vet.Controller
 	// OwnerRepository is bean "ownerRepository".
 	OwnerRepository *mysql.OwnerRepository
 	// PetTypeRepository is bean "petTypeRepository".
 	PetTypeRepository *mysql.PetTypeRepository
+	// PresentationConfiguration is bean "configuration".
+	PresentationConfiguration *presentation.Configuration
+	// Mux is bean "mux".
+	Mux *http.ServeMux
+	// Catalog is bean "catalog".
+	Catalog *i18n.Catalog
+	// Renderer is bean "renderer".
+	Renderer *spiceview.Renderer
+	// VetController is bean "controller".
+	VetController *vet.Controller
 	// OwnerController is bean "controller".
 	OwnerController *owner.Controller
 	// PetController is bean "petController".
@@ -65,29 +69,33 @@ type Components struct {
 	WelcomeController *system.WelcomeController
 	// ServerSettings is bean "ServerSettings".
 	ServerSettings presentation.ServerSettings
-	// Server is bean "newServer".
+	// Server is bean "server".
 	Server *presentation.Server
 }
 
 // BeanOverrides provides compile-time-typed singleton replacements.
 // Replacements use the normal generated cleanup and rollback path.
 type BeanOverrides struct {
-	// Catalog replaces bean "newCatalog".
-	Catalog spicebean.Override[*i18n.Catalog]
-	// Renderer replaces bean "newRenderer".
-	Renderer spicebean.Override[*spiceview.Renderer]
-	// Mux replaces bean "newMux".
-	Mux spicebean.Override[*http.ServeMux]
-	// OpenDatabase replaces bean "openDatabase".
-	OpenDatabase spicebean.Override[*mysql.Database]
+	// MysqlConfiguration replaces bean "configuration".
+	MysqlConfiguration spicebean.Override[*mysql.Configuration]
+	// Database replaces bean "database".
+	Database spicebean.Override[*mysql.Database]
 	// VetRepository replaces bean "vetRepository".
 	VetRepository spicebean.Override[*mysql.VetRepository]
-	// VetController replaces bean "controller".
-	VetController spicebean.Override[*vet.Controller]
 	// OwnerRepository replaces bean "ownerRepository".
 	OwnerRepository spicebean.Override[*mysql.OwnerRepository]
 	// PetTypeRepository replaces bean "petTypeRepository".
 	PetTypeRepository spicebean.Override[*mysql.PetTypeRepository]
+	// PresentationConfiguration replaces bean "configuration".
+	PresentationConfiguration spicebean.Override[*presentation.Configuration]
+	// Mux replaces bean "mux".
+	Mux spicebean.Override[*http.ServeMux]
+	// Catalog replaces bean "catalog".
+	Catalog spicebean.Override[*i18n.Catalog]
+	// Renderer replaces bean "renderer".
+	Renderer spicebean.Override[*spiceview.Renderer]
+	// VetController replaces bean "controller".
+	VetController spicebean.Override[*vet.Controller]
 	// OwnerController replaces bean "controller".
 	OwnerController spicebean.Override[*owner.Controller]
 	// PetController replaces bean "petController".
@@ -96,7 +104,7 @@ type BeanOverrides struct {
 	VisitController spicebean.Override[*owner.VisitController]
 	// WelcomeController replaces bean "welcomeController".
 	WelcomeController spicebean.Override[*system.WelcomeController]
-	// Server replaces bean "newServer".
+	// Server replaces bean "server".
 	Server spicebean.Override[*presentation.Server]
 }
 
@@ -120,29 +128,35 @@ func ComposeBeanOverrides(layers ...BeanOverrideLayer) (BeanOverrides, error) {
 			return BeanOverrides{}, fmt.Errorf("compose bean overrides: layer %q repeats layer %d", layer.Name, previous)
 		}
 		seen[layer.Name] = index
-		if layer.Overrides.Catalog.Enabled() {
-			result.Catalog = layer.Overrides.Catalog
+		if layer.Overrides.MysqlConfiguration.Enabled() {
+			result.MysqlConfiguration = layer.Overrides.MysqlConfiguration
 		}
-		if layer.Overrides.Renderer.Enabled() {
-			result.Renderer = layer.Overrides.Renderer
-		}
-		if layer.Overrides.Mux.Enabled() {
-			result.Mux = layer.Overrides.Mux
-		}
-		if layer.Overrides.OpenDatabase.Enabled() {
-			result.OpenDatabase = layer.Overrides.OpenDatabase
+		if layer.Overrides.Database.Enabled() {
+			result.Database = layer.Overrides.Database
 		}
 		if layer.Overrides.VetRepository.Enabled() {
 			result.VetRepository = layer.Overrides.VetRepository
-		}
-		if layer.Overrides.VetController.Enabled() {
-			result.VetController = layer.Overrides.VetController
 		}
 		if layer.Overrides.OwnerRepository.Enabled() {
 			result.OwnerRepository = layer.Overrides.OwnerRepository
 		}
 		if layer.Overrides.PetTypeRepository.Enabled() {
 			result.PetTypeRepository = layer.Overrides.PetTypeRepository
+		}
+		if layer.Overrides.PresentationConfiguration.Enabled() {
+			result.PresentationConfiguration = layer.Overrides.PresentationConfiguration
+		}
+		if layer.Overrides.Mux.Enabled() {
+			result.Mux = layer.Overrides.Mux
+		}
+		if layer.Overrides.Catalog.Enabled() {
+			result.Catalog = layer.Overrides.Catalog
+		}
+		if layer.Overrides.Renderer.Enabled() {
+			result.Renderer = layer.Overrides.Renderer
+		}
+		if layer.Overrides.VetController.Enabled() {
+			result.VetController = layer.Overrides.VetController
 		}
 		if layer.Overrides.OwnerController.Enabled() {
 			result.OwnerController = layer.Overrides.OwnerController

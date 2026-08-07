@@ -37,64 +37,72 @@ const (
 // Components is a typed snapshot of constructed singleton beans.
 // It performs no reflection or string-based lookup.
 type Components struct {
-	// PetclinicDatabase is bean "newPetclinicDatabase".
+	// MemoryConfiguration is bean "configuration".
+	MemoryConfiguration *memory.Configuration
+	// PetclinicDatabase is bean "petclinicDatabase".
 	PetclinicDatabase *memory.Database
-	// Catalog is bean "newCatalog".
-	Catalog *i18n.Catalog
-	// Renderer is bean "newRenderer".
-	Renderer *spiceview.Renderer
-	// Mux is bean "newMux".
-	Mux *http.ServeMux
 	// VetRepository is bean "vetRepository".
 	VetRepository *memory.VetRepository
-	// VetController is bean "controller".
-	VetController *vet.Controller
 	// OwnerRepository is bean "ownerRepository".
 	OwnerRepository *memory.OwnerRepository
-	// OwnerController is bean "controller".
-	OwnerController *owner.Controller
-	// VisitController is bean "visitController".
-	VisitController *owner.VisitController
 	// PetTypeRepository is bean "petTypeRepository".
 	PetTypeRepository *memory.PetTypeRepository
+	// PresentationConfiguration is bean "configuration".
+	PresentationConfiguration *presentation.Configuration
+	// Mux is bean "mux".
+	Mux *http.ServeMux
+	// Catalog is bean "catalog".
+	Catalog *i18n.Catalog
+	// Renderer is bean "renderer".
+	Renderer *spiceview.Renderer
+	// VetController is bean "controller".
+	VetController *vet.Controller
+	// OwnerController is bean "controller".
+	OwnerController *owner.Controller
 	// PetController is bean "petController".
 	PetController *owner.PetController
+	// VisitController is bean "visitController".
+	VisitController *owner.VisitController
 	// WelcomeController is bean "welcomeController".
 	WelcomeController *system.WelcomeController
 	// ServerSettings is bean "ServerSettings".
 	ServerSettings presentation.ServerSettings
-	// Server is bean "newServer".
+	// Server is bean "server".
 	Server *presentation.Server
 }
 
 // BeanOverrides provides compile-time-typed singleton replacements.
 // Replacements use the normal generated cleanup and rollback path.
 type BeanOverrides struct {
-	// PetclinicDatabase replaces bean "newPetclinicDatabase".
+	// MemoryConfiguration replaces bean "configuration".
+	MemoryConfiguration spicebean.Override[*memory.Configuration]
+	// PetclinicDatabase replaces bean "petclinicDatabase".
 	PetclinicDatabase spicebean.Override[*memory.Database]
-	// Catalog replaces bean "newCatalog".
-	Catalog spicebean.Override[*i18n.Catalog]
-	// Renderer replaces bean "newRenderer".
-	Renderer spicebean.Override[*spiceview.Renderer]
-	// Mux replaces bean "newMux".
-	Mux spicebean.Override[*http.ServeMux]
 	// VetRepository replaces bean "vetRepository".
 	VetRepository spicebean.Override[*memory.VetRepository]
-	// VetController replaces bean "controller".
-	VetController spicebean.Override[*vet.Controller]
 	// OwnerRepository replaces bean "ownerRepository".
 	OwnerRepository spicebean.Override[*memory.OwnerRepository]
-	// OwnerController replaces bean "controller".
-	OwnerController spicebean.Override[*owner.Controller]
-	// VisitController replaces bean "visitController".
-	VisitController spicebean.Override[*owner.VisitController]
 	// PetTypeRepository replaces bean "petTypeRepository".
 	PetTypeRepository spicebean.Override[*memory.PetTypeRepository]
+	// PresentationConfiguration replaces bean "configuration".
+	PresentationConfiguration spicebean.Override[*presentation.Configuration]
+	// Mux replaces bean "mux".
+	Mux spicebean.Override[*http.ServeMux]
+	// Catalog replaces bean "catalog".
+	Catalog spicebean.Override[*i18n.Catalog]
+	// Renderer replaces bean "renderer".
+	Renderer spicebean.Override[*spiceview.Renderer]
+	// VetController replaces bean "controller".
+	VetController spicebean.Override[*vet.Controller]
+	// OwnerController replaces bean "controller".
+	OwnerController spicebean.Override[*owner.Controller]
 	// PetController replaces bean "petController".
 	PetController spicebean.Override[*owner.PetController]
+	// VisitController replaces bean "visitController".
+	VisitController spicebean.Override[*owner.VisitController]
 	// WelcomeController replaces bean "welcomeController".
 	WelcomeController spicebean.Override[*system.WelcomeController]
-	// Server replaces bean "newServer".
+	// Server replaces bean "server".
 	Server spicebean.Override[*presentation.Server]
 }
 
@@ -118,8 +126,26 @@ func ComposeBeanOverrides(layers ...BeanOverrideLayer) (BeanOverrides, error) {
 			return BeanOverrides{}, fmt.Errorf("compose bean overrides: layer %q repeats layer %d", layer.Name, previous)
 		}
 		seen[layer.Name] = index
+		if layer.Overrides.MemoryConfiguration.Enabled() {
+			result.MemoryConfiguration = layer.Overrides.MemoryConfiguration
+		}
 		if layer.Overrides.PetclinicDatabase.Enabled() {
 			result.PetclinicDatabase = layer.Overrides.PetclinicDatabase
+		}
+		if layer.Overrides.VetRepository.Enabled() {
+			result.VetRepository = layer.Overrides.VetRepository
+		}
+		if layer.Overrides.OwnerRepository.Enabled() {
+			result.OwnerRepository = layer.Overrides.OwnerRepository
+		}
+		if layer.Overrides.PetTypeRepository.Enabled() {
+			result.PetTypeRepository = layer.Overrides.PetTypeRepository
+		}
+		if layer.Overrides.PresentationConfiguration.Enabled() {
+			result.PresentationConfiguration = layer.Overrides.PresentationConfiguration
+		}
+		if layer.Overrides.Mux.Enabled() {
+			result.Mux = layer.Overrides.Mux
 		}
 		if layer.Overrides.Catalog.Enabled() {
 			result.Catalog = layer.Overrides.Catalog
@@ -127,29 +153,17 @@ func ComposeBeanOverrides(layers ...BeanOverrideLayer) (BeanOverrides, error) {
 		if layer.Overrides.Renderer.Enabled() {
 			result.Renderer = layer.Overrides.Renderer
 		}
-		if layer.Overrides.Mux.Enabled() {
-			result.Mux = layer.Overrides.Mux
-		}
-		if layer.Overrides.VetRepository.Enabled() {
-			result.VetRepository = layer.Overrides.VetRepository
-		}
 		if layer.Overrides.VetController.Enabled() {
 			result.VetController = layer.Overrides.VetController
-		}
-		if layer.Overrides.OwnerRepository.Enabled() {
-			result.OwnerRepository = layer.Overrides.OwnerRepository
 		}
 		if layer.Overrides.OwnerController.Enabled() {
 			result.OwnerController = layer.Overrides.OwnerController
 		}
-		if layer.Overrides.VisitController.Enabled() {
-			result.VisitController = layer.Overrides.VisitController
-		}
-		if layer.Overrides.PetTypeRepository.Enabled() {
-			result.PetTypeRepository = layer.Overrides.PetTypeRepository
-		}
 		if layer.Overrides.PetController.Enabled() {
 			result.PetController = layer.Overrides.PetController
+		}
+		if layer.Overrides.VisitController.Enabled() {
+			result.VisitController = layer.Overrides.VisitController
 		}
 		if layer.Overrides.WelcomeController.Enabled() {
 			result.WelcomeController = layer.Overrides.WelcomeController

@@ -14,7 +14,6 @@ import (
 	spicemysql "github.com/spice-framework/starter-mysql"
 )
 
-// @import { Bean } from "github.com/spice-framework/spice/annotation/core"
 // @import { OnStart } from "github.com/spice-framework/spice/annotation/lifecycle"
 
 // Database owns the Petclinic MySQL pool and migration lifecycle.
@@ -23,9 +22,8 @@ type Database struct {
 }
 
 // OpenDatabase constructs the MySQL pool without hidden environment reads or
-// network I/O. Spice registers the returned cleanup immediately.
-//
-// @Bean
+// network I/O. Spice registers the returned cleanup immediately when invoked
+// by Configuration.Database.
 func OpenDatabase(
 	settings Settings,
 ) (*Database, lifecycle.Cleanup, error) {

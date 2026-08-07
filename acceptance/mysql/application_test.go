@@ -44,7 +44,9 @@ func TestGeneratedMySQLGraphUsesMySQLRepositories(
 	})
 
 	components := application.Components()
-	if components.OpenDatabase == nil ||
+	if components.Database == nil ||
+		components.MysqlConfiguration == nil ||
+		components.PresentationConfiguration == nil ||
 		components.OwnerRepository == nil ||
 		components.PetTypeRepository == nil ||
 		components.VetRepository == nil {

@@ -14,7 +14,6 @@ import (
 	spicepostgres "github.com/spice-framework/starter-postgres"
 )
 
-// @import { Bean } from "github.com/spice-framework/spice/annotation/core"
 // @import { OnStart } from "github.com/spice-framework/spice/annotation/lifecycle"
 
 // Database owns the Petclinic PostgreSQL pool and migration lifecycle.
@@ -23,9 +22,8 @@ type Database struct {
 }
 
 // OpenDatabase constructs the PostgreSQL pool without hidden environment
-// reads or network I/O. Spice registers the returned cleanup immediately.
-//
-// @Bean
+// reads or network I/O. Spice registers the returned cleanup immediately when
+// invoked by Configuration.Database.
 func OpenDatabase(
 	settings Settings,
 ) (*Database, lifecycle.Cleanup, error) {

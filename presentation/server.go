@@ -10,7 +10,6 @@ import (
 	"sync"
 )
 
-// @import { Bean } from "github.com/spice-framework/spice/annotation/core"
 // @import { OnStart, OnStop } from "github.com/spice-framework/spice/annotation/lifecycle"
 
 // Server owns the Petclinic HTTP listener and graceful-drain lifecycle.
@@ -27,8 +26,6 @@ type Server struct {
 }
 
 // NewServer constructs a lifecycle-managed server with bounded timeouts.
-//
-// @Bean
 func NewServer(
 	settings ServerSettings,
 	handler *http.ServeMux,

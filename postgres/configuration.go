@@ -1,0 +1,17 @@
+package postgres
+
+import "github.com/spice-framework/spice/lifecycle"
+
+// @import { Bean, Configuration } from "github.com/spice-framework/spice/annotation/core"
+
+// Configuration owns the PostgreSQL target's infrastructure factories.
+// @Configuration
+type Configuration struct{}
+
+// Database supplies the lifecycle-managed PostgreSQL connection pool.
+// @Bean
+func (*Configuration) Database(
+	settings Settings,
+) (*Database, lifecycle.Cleanup, error) {
+	return OpenDatabase(settings)
+}

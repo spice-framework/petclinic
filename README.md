@@ -24,6 +24,8 @@ toy dependency-injection graph:
 - owners, pets, visits, pet types, veterinarians, and specialties;
 - deterministic validation and stable query ordering;
 - explicit generated interface bindings and direct constructor calls;
+- typed `@ConfigurationProperties` and package-owned `@Configuration`
+  classes whose `@Bean` methods are invoked directly by generated Go;
 - explicit, cycle-free Modulith roots for application assembly, domain,
   presentation, persistence, owners, veterinarians, and system behavior;
 - dependency-first startup, reverse cleanup, and graceful HTTP shutdown;
@@ -85,12 +87,13 @@ analysis, shuffled/race tests, at least 85% business-source coverage,
 vendor-offline builds, generated freshness, and executable checks for all
 three targets.
 
-Petclinic also proves two explicit, independently versioned Spice core and
-toolchain pairs. [`spice-compatibility.json`](spice-compatibility.json) records
-the provisional minimum pair selected by `go.mod` and a distinct current pair.
-`make compatibility` verifies both through normal Go module integrity, then
+Petclinic records explicit minimum and current boundaries for independently
+versioned Spice core and toolchain modules.
+[`spice-compatibility.json`](spice-compatibility.json) pins those boundaries;
+they may coincide when a source-contract change raises the application floor.
+`make compatibility` verifies each distinct pair through normal Go module integrity, then
 uses an isolated vendor-backed mirror to vet, race-test, verify, generation-
-check, and build all three targets without changing the checkout. The complete
+checks, and builds all three targets without changing the checkout. The complete
 contract and update policy are documented in
 [`docs/compatibility.md`](docs/compatibility.md). `make verify` always includes
 this proof; CI publishes the minimum and current evidence as separate jobs.

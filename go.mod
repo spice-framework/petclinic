@@ -10,7 +10,7 @@ tool (
 )
 
 require (
-	github.com/spice-framework/spice v0.0.0-20260805222830-a2ecd56df246
+	github.com/spice-framework/spice v0.1.0-preview.1.0.20260807050649-46ba4660cfb0
 	github.com/spice-framework/starter-mysql v0.0.0-20260805191832-cc9a2c5034d0
 	github.com/spice-framework/starter-postgres v0.0.0-20260805182646-6310c4b4b95e
 )
@@ -22,7 +22,7 @@ require (
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
 	github.com/jackc/pgx/v5 v5.10.0 // indirect
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
-	github.com/spice-framework/toolchain v0.0.0-20260805230546-150f8ae62c13 // indirect
+	github.com/spice-framework/toolchain v0.1.0-preview.1.0.20260807044408-6598abca8196 // indirect
 	golang.org/x/mod v0.38.0 // indirect
 	golang.org/x/sync v0.22.0 // indirect
 	golang.org/x/sys v0.47.0 // indirect

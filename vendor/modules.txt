@@ -29,7 +29,7 @@ github.com/jackc/pgx/v5/stdlib
 ## explicit; go 1.19
 github.com/jackc/puddle/v2
 github.com/jackc/puddle/v2/internal/genstack
-# github.com/spice-framework/spice v0.0.0-20260805222830-a2ecd56df246
+# github.com/spice-framework/spice v0.1.0-preview.1.0.20260807050649-46ba4660cfb0
 ## explicit; go 1.26.0
 github.com/spice-framework/spice/annotation
 github.com/spice-framework/spice/annotation/async
@@ -42,6 +42,7 @@ github.com/spice-framework/spice/annotation/lifecycle
 github.com/spice-framework/spice/annotation/management
 github.com/spice-framework/spice/annotation/modulith
 github.com/spice-framework/spice/annotation/observability
+github.com/spice-framework/spice/annotation/retry
 github.com/spice-framework/spice/annotation/schedule
 github.com/spice-framework/spice/annotation/sdk
 github.com/spice-framework/spice/annotation/sdk/protocol
@@ -72,7 +73,7 @@ github.com/spice-framework/starter-mysql
 # github.com/spice-framework/starter-postgres v0.0.0-20260805182646-6310c4b4b95e
 ## explicit; go 1.26.0
 github.com/spice-framework/starter-postgres
-# github.com/spice-framework/toolchain v0.0.0-20260805230546-150f8ae62c13
+# github.com/spice-framework/toolchain v0.1.0-preview.1.0.20260807044408-6598abca8196
 ## explicit; go 1.26.0
 github.com/spice-framework/toolchain/cmd/spice
 github.com/spice-framework/toolchain/cmd/spice-annotation-core
@@ -90,14 +91,15 @@ github.com/spice-framework/toolchain/compiler/controller
 github.com/spice-framework/toolchain/compiler/descriptor
 github.com/spice-framework/toolchain/compiler/diagnostic
 github.com/spice-framework/toolchain/compiler/diagnostic/adapt
+github.com/spice-framework/toolchain/compiler/enum
 github.com/spice-framework/toolchain/compiler/event
 github.com/spice-framework/toolchain/compiler/generate
 github.com/spice-framework/toolchain/compiler/graph
-github.com/spice-framework/toolchain/compiler/internal/moduleenv
 github.com/spice-framework/toolchain/compiler/lifecycle
 github.com/spice-framework/toolchain/compiler/load
 github.com/spice-framework/toolchain/compiler/modulith
 github.com/spice-framework/toolchain/compiler/parser
+github.com/spice-framework/toolchain/compiler/policy
 github.com/spice-framework/toolchain/compiler/provider
 github.com/spice-framework/toolchain/compiler/resolve
 github.com/spice-framework/toolchain/compiler/scan
@@ -105,6 +107,7 @@ github.com/spice-framework/toolchain/compiler/schedule
 github.com/spice-framework/toolchain/compiler/service
 github.com/spice-framework/toolchain/compiler/signature
 github.com/spice-framework/toolchain/compiler/starter
+github.com/spice-framework/toolchain/compiler/style
 github.com/spice-framework/toolchain/compiler/targetid
 github.com/spice-framework/toolchain/compiler/transaction
 github.com/spice-framework/toolchain/compiler/validate
@@ -114,6 +117,7 @@ github.com/spice-framework/toolchain/internal/devloop
 github.com/spice-framework/toolchain/internal/genfs
 github.com/spice-framework/toolchain/internal/identity
 github.com/spice-framework/toolchain/internal/lsp
+github.com/spice-framework/toolchain/internal/moduleenv
 github.com/spice-framework/toolchain/internal/scaffold
 # golang.org/x/mod v0.38.0
 ## explicit; go 1.25.0

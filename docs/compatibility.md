@@ -15,13 +15,12 @@ pair is a pinned forward-compatibility signal, not a moving dependency.
 Branch names, aliases such as `latest`, malformed versions, undeclared tools,
 missing requirements, and mismatched MVS selection fail closed.
 
-The minimum remains the first independently consumable pair: core
-`v0.0.0-20260805222830-a2ecd56df246` and bridged toolchain
-`v0.0.0-20260805230546-150f8ae62c13`. The current line independently proves
-core `v0.0.0-20260806143541-fde1793832bd` with toolchain
-`v0.0.0-20260806133530-71211498297c`. `-line=all` therefore performs two real
-verification runs. The schema never infers a toolchain version from a
-core-only version change.
+The Java-structured configuration source contract raises both boundaries to
+core `v0.1.0-preview.1.0.20260807050649-46ba4660cfb0` and toolchain
+`v0.1.0-preview.1.0.20260807044408-6598abca8196`. Because minimum and current
+currently coincide, `-line=all` performs one combined `minimum/current`
+verification run. A later compatible pair can advance `current` independently;
+the schema never infers a toolchain version from a core-only version change.
 
 For each boundary the compatibility runner:
 

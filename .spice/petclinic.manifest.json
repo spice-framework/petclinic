@@ -1,5 +1,5 @@
 {
-  "schema": 5,
+  "schema": 6,
   "target": {
     "id": "petclinic",
     "layout": "application-package",
@@ -12,7 +12,7 @@
   },
   "generator_version": "0.1.0-dev",
   "go_format_line": "1.26",
-  "input_sha256": "sha256:e6677925ca06bd18614b73292a5f116f91285fd50019c9b796dfdae3bb68f736",
+  "input_sha256": "sha256:c3efed8fbf228e3adc212fe263a0260e646947360d24823a834210b75af79bc1",
   "files": [
     {
       "path": "internal/spicegen/petclinic/artifacts/openapi.json",
@@ -471,6 +471,51 @@
       ]
     },
     {
+      "path": "internal/spicegen/petclinic/sources/memory/configuration_spice_gen.go",
+      "sha256": "sha256:5a6fa005e060cff7c9c84a8f8debdb1390e32194bc53911eac19f3928c6a11df",
+      "role": "source-unit",
+      "primary_source": {
+        "path": "memory/configuration.go",
+        "line": 6,
+        "column": 4,
+        "symbol": "spice:symbol:v1|type|43:github.com/spice-framework/petclinic/memory|0:|13:Configuration"
+      },
+      "mappings": [
+        {
+          "kind": "provider-construction",
+          "contribution": "spice:symbol:v1|method|43:github.com/spice-framework/petclinic/memory|13:Configuration|17:PetclinicDatabase",
+          "source": {
+            "path": "memory/configuration.go",
+            "line": 10,
+            "column": 4,
+            "symbol": "spice:symbol:v1|method|43:github.com/spice-framework/petclinic/memory|13:Configuration|17:PetclinicDatabase"
+          },
+          "generated": {
+            "start_line": 16,
+            "start_column": 4,
+            "end_line": 16,
+            "end_column": 39
+          }
+        },
+        {
+          "kind": "provider-construction",
+          "contribution": "spice:symbol:v1|type|43:github.com/spice-framework/petclinic/memory|0:|13:Configuration",
+          "source": {
+            "path": "memory/configuration.go",
+            "line": 6,
+            "column": 4,
+            "symbol": "spice:symbol:v1|type|43:github.com/spice-framework/petclinic/memory|0:|13:Configuration"
+          },
+          "generated": {
+            "start_line": 27,
+            "start_column": 4,
+            "end_line": 27,
+            "end_column": 35
+          }
+        }
+      ]
+    },
+    {
       "path": "internal/spicegen/petclinic/sources/memory/owner_repository_spice_gen.go",
       "sha256": "sha256:e20d5a7d63f3e1e2177c09fb99a849280f8990ce9aacb5f9862a016ca932ee95",
       "role": "source-unit",
@@ -556,35 +601,6 @@
             "start_column": 7,
             "end_line": 28,
             "end_column": 30
-          }
-        }
-      ]
-    },
-    {
-      "path": "internal/spicegen/petclinic/sources/memory/seed_spice_gen.go",
-      "sha256": "sha256:be1c2baa356e1bc9a986edf0164c3552576e5df37e7c71dd0c15363c799d3f9b",
-      "role": "source-unit",
-      "primary_source": {
-        "path": "memory/seed.go",
-        "line": 16,
-        "column": 4,
-        "symbol": "spice:symbol:v1|function|43:github.com/spice-framework/petclinic/memory|0:|20:NewPetclinicDatabase"
-      },
-      "mappings": [
-        {
-          "kind": "provider-construction",
-          "contribution": "spice:symbol:v1|function|43:github.com/spice-framework/petclinic/memory|0:|20:NewPetclinicDatabase",
-          "source": {
-            "path": "memory/seed.go",
-            "line": 16,
-            "column": 4,
-            "symbol": "spice:symbol:v1|function|43:github.com/spice-framework/petclinic/memory|0:|20:NewPetclinicDatabase"
-          },
-          "generated": {
-            "start_line": 15,
-            "start_column": 4,
-            "end_line": 15,
-            "end_column": 39
           }
         }
       ]
@@ -722,88 +738,94 @@
       ]
     },
     {
-      "path": "internal/spicegen/petclinic/sources/presentation/catalog_spice_gen.go",
-      "sha256": "sha256:411a5b29bea13fbc6313780d5b262fb13a077f9eb206140710022bd241dc49c3",
+      "path": "internal/spicegen/petclinic/sources/presentation/configuration_spice_gen.go",
+      "sha256": "sha256:6bd3b1805622b8266f642678539688fdadc0508dafaa663dd99c18ba1ce4cc83",
       "role": "source-unit",
       "primary_source": {
-        "path": "presentation/catalog.go",
-        "line": 16,
+        "path": "presentation/configuration.go",
+        "line": 13,
         "column": 4,
-        "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog"
+        "symbol": "spice:symbol:v1|type|49:github.com/spice-framework/petclinic/presentation|0:|13:Configuration"
       },
       "mappings": [
         {
           "kind": "provider-construction",
-          "contribution": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog",
+          "contribution": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|3:Mux",
           "source": {
-            "path": "presentation/catalog.go",
-            "line": 16,
+            "path": "presentation/configuration.go",
+            "line": 23,
             "column": 4,
-            "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog"
+            "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|3:Mux"
           },
           "generated": {
-            "start_line": 16,
+            "start_line": 22,
             "start_column": 4,
-            "end_line": 16,
-            "end_column": 29
-          }
-        }
-      ]
-    },
-    {
-      "path": "internal/spicegen/petclinic/sources/presentation/mux_spice_gen.go",
-      "sha256": "sha256:4ce9f5963f48783cf20b4ce686b7f96c74f677b35de92dffd5585921c95a626d",
-      "role": "source-unit",
-      "primary_source": {
-        "path": "presentation/mux.go",
-        "line": 14,
-        "column": 4,
-        "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux"
-      },
-      "mappings": [
-        {
-          "kind": "provider-construction",
-          "contribution": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux",
-          "source": {
-            "path": "presentation/mux.go",
-            "line": 14,
-            "column": 4,
-            "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux"
-          },
-          "generated": {
-            "start_line": 16,
-            "start_column": 4,
-            "end_line": 16,
+            "end_line": 22,
             "end_column": 25
           }
-        }
-      ]
-    },
-    {
-      "path": "internal/spicegen/petclinic/sources/presentation/renderer_spice_gen.go",
-      "sha256": "sha256:35cb36e9b7eb3939d3f3b7df5ae77b0777bf6fa183c98fd2e62a27e50b0eed12",
-      "role": "source-unit",
-      "primary_source": {
-        "path": "presentation/renderer.go",
-        "line": 20,
-        "column": 4,
-        "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer"
-      },
-      "mappings": [
+        },
         {
           "kind": "provider-construction",
-          "contribution": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer",
+          "contribution": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|6:Server",
           "source": {
-            "path": "presentation/renderer.go",
-            "line": 20,
+            "path": "presentation/configuration.go",
+            "line": 38,
             "column": 4,
-            "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer"
+            "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|6:Server"
           },
           "generated": {
-            "start_line": 17,
+            "start_line": 33,
             "start_column": 4,
-            "end_line": 17,
+            "end_line": 33,
+            "end_column": 28
+          }
+        },
+        {
+          "kind": "provider-construction",
+          "contribution": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|7:Catalog",
+          "source": {
+            "path": "presentation/configuration.go",
+            "line": 17,
+            "column": 4,
+            "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|7:Catalog"
+          },
+          "generated": {
+            "start_line": 44,
+            "start_column": 4,
+            "end_line": 44,
+            "end_column": 29
+          }
+        },
+        {
+          "kind": "provider-construction",
+          "contribution": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|8:Renderer",
+          "source": {
+            "path": "presentation/configuration.go",
+            "line": 30,
+            "column": 4,
+            "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|8:Renderer"
+          },
+          "generated": {
+            "start_line": 55,
+            "start_column": 4,
+            "end_line": 55,
             "end_column": 30
+          }
+        },
+        {
+          "kind": "provider-construction",
+          "contribution": "spice:symbol:v1|type|49:github.com/spice-framework/petclinic/presentation|0:|13:Configuration",
+          "source": {
+            "path": "presentation/configuration.go",
+            "line": 13,
+            "column": 4,
+            "symbol": "spice:symbol:v1|type|49:github.com/spice-framework/petclinic/presentation|0:|13:Configuration"
+          },
+          "generated": {
+            "start_line": 66,
+            "start_column": 4,
+            "end_line": 66,
+            "end_column": 35
           }
         }
       ]
@@ -833,35 +855,6 @@
             "start_column": 4,
             "end_line": 16,
             "end_column": 31
-          }
-        }
-      ]
-    },
-    {
-      "path": "internal/spicegen/petclinic/sources/presentation/server_spice_gen.go",
-      "sha256": "sha256:739f9fb7d788ae7c448902e66893fa326122a8864cc5c4c6efa0915535a3f940",
-      "role": "source-unit",
-      "primary_source": {
-        "path": "presentation/server.go",
-        "line": 31,
-        "column": 4,
-        "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer"
-      },
-      "mappings": [
-        {
-          "kind": "provider-construction",
-          "contribution": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer",
-          "source": {
-            "path": "presentation/server.go",
-            "line": 31,
-            "column": 4,
-            "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer"
-          },
-          "generated": {
-            "start_line": 16,
-            "start_column": 4,
-            "end_line": 16,
-            "end_column": 28
           }
         }
       ]
@@ -926,7 +919,7 @@
     },
     {
       "path": "internal/spicegen/petclinic/spice_assembly_gen.go",
-      "sha256": "sha256:20a691b77f14df591e365e0559973f808d1a059e214674592fac5e8c08d52718",
+      "sha256": "sha256:8f91ffc125236308161126109e80f9ea7ffcf9478e5cec7835746292e53c6f1b",
       "role": "target-assembly",
       "related_sources": [
         {
@@ -934,6 +927,18 @@
           "line": 23,
           "column": 4,
           "symbol": "spice:symbol:v1|function|36:github.com/spice-framework/petclinic|0:|4:main"
+        },
+        {
+          "path": "memory/configuration.go",
+          "line": 6,
+          "column": 4,
+          "symbol": "spice:symbol:v1|type|43:github.com/spice-framework/petclinic/memory|0:|13:Configuration"
+        },
+        {
+          "path": "memory/configuration.go",
+          "line": 10,
+          "column": 4,
+          "symbol": "spice:symbol:v1|method|43:github.com/spice-framework/petclinic/memory|13:Configuration|17:PetclinicDatabase"
         },
         {
           "path": "memory/owner_repository.go",
@@ -946,12 +951,6 @@
           "line": 16,
           "column": 4,
           "symbol": "spice:symbol:v1|type|43:github.com/spice-framework/petclinic/memory|0:|17:PetTypeRepository"
-        },
-        {
-          "path": "memory/seed.go",
-          "line": 16,
-          "column": 4,
-          "symbol": "spice:symbol:v1|function|43:github.com/spice-framework/petclinic/memory|0:|20:NewPetclinicDatabase"
         },
         {
           "path": "memory/vet_repository.go",
@@ -1332,38 +1331,44 @@
           "symbol": "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|6:Create.Description"
         },
         {
-          "path": "presentation/catalog.go",
-          "line": 16,
+          "path": "presentation/configuration.go",
+          "line": 13,
           "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog"
+          "symbol": "spice:symbol:v1|type|49:github.com/spice-framework/petclinic/presentation|0:|13:Configuration"
         },
         {
-          "path": "presentation/mux.go",
-          "line": 14,
+          "path": "presentation/configuration.go",
+          "line": 17,
           "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux"
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|7:Catalog"
         },
         {
-          "path": "presentation/renderer.go",
-          "line": 20,
+          "path": "presentation/configuration.go",
+          "line": 23,
           "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer"
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|3:Mux"
+        },
+        {
+          "path": "presentation/configuration.go",
+          "line": 30,
+          "column": 4,
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|8:Renderer"
+        },
+        {
+          "path": "presentation/configuration.go",
+          "line": 38,
+          "column": 4,
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|6:Server"
         },
         {
           "path": "presentation/server.go",
-          "line": 31,
-          "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer"
-        },
-        {
-          "path": "presentation/server.go",
-          "line": 65,
+          "line": 62,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|5:Start"
         },
         {
           "path": "presentation/server.go",
-          "line": 104,
+          "line": 101,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|4:Stop"
         },
@@ -1517,7 +1522,7 @@
     },
     {
       "path": "internal/spicegen/petclinic/spice_contracts_gen.go",
-      "sha256": "sha256:a1954dca5bd1f9bac5b72230840ea6c849669c4259b87a61eba3a71977b04ba5",
+      "sha256": "sha256:1055e9ae7cf82d6e78bc04d3d182ebe1b367358bd1c3eed0158f4db26b50b2fa",
       "role": "target-contracts",
       "related_sources": [
         {
@@ -1525,6 +1530,18 @@
           "line": 23,
           "column": 4,
           "symbol": "spice:symbol:v1|function|36:github.com/spice-framework/petclinic|0:|4:main"
+        },
+        {
+          "path": "memory/configuration.go",
+          "line": 6,
+          "column": 4,
+          "symbol": "spice:symbol:v1|type|43:github.com/spice-framework/petclinic/memory|0:|13:Configuration"
+        },
+        {
+          "path": "memory/configuration.go",
+          "line": 10,
+          "column": 4,
+          "symbol": "spice:symbol:v1|method|43:github.com/spice-framework/petclinic/memory|13:Configuration|17:PetclinicDatabase"
         },
         {
           "path": "memory/owner_repository.go",
@@ -1537,12 +1554,6 @@
           "line": 16,
           "column": 4,
           "symbol": "spice:symbol:v1|type|43:github.com/spice-framework/petclinic/memory|0:|17:PetTypeRepository"
-        },
-        {
-          "path": "memory/seed.go",
-          "line": 16,
-          "column": 4,
-          "symbol": "spice:symbol:v1|function|43:github.com/spice-framework/petclinic/memory|0:|20:NewPetclinicDatabase"
         },
         {
           "path": "memory/vet_repository.go",
@@ -1569,38 +1580,44 @@
           "symbol": "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController"
         },
         {
-          "path": "presentation/catalog.go",
-          "line": 16,
+          "path": "presentation/configuration.go",
+          "line": 13,
           "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog"
+          "symbol": "spice:symbol:v1|type|49:github.com/spice-framework/petclinic/presentation|0:|13:Configuration"
         },
         {
-          "path": "presentation/mux.go",
-          "line": 14,
+          "path": "presentation/configuration.go",
+          "line": 17,
           "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux"
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|7:Catalog"
         },
         {
-          "path": "presentation/renderer.go",
-          "line": 20,
+          "path": "presentation/configuration.go",
+          "line": 23,
           "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer"
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|3:Mux"
+        },
+        {
+          "path": "presentation/configuration.go",
+          "line": 30,
+          "column": 4,
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|8:Renderer"
+        },
+        {
+          "path": "presentation/configuration.go",
+          "line": 38,
+          "column": 4,
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|6:Server"
         },
         {
           "path": "presentation/server.go",
-          "line": 31,
-          "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer"
-        },
-        {
-          "path": "presentation/server.go",
-          "line": 65,
+          "line": 62,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|5:Start"
         },
         {
           "path": "presentation/server.go",
-          "line": 104,
+          "line": 101,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|4:Stop"
         },
@@ -1656,7 +1673,7 @@
     },
     {
       "path": "internal/spicegen/petclinic/spice_features_gen.go",
-      "sha256": "sha256:5fe1ad2aad35ebdcfc57bbe0bde13afec5e606fe3f4850c736ab3ab8d99d9996",
+      "sha256": "sha256:a7a0ef93c9717acb52af96d1c3ee6c2972bafb69bbf6a276291258caa46a7222",
       "role": "target-features",
       "related_sources": [
         {
@@ -1667,13 +1684,13 @@
         },
         {
           "path": "presentation/server.go",
-          "line": 65,
+          "line": 62,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|5:Start"
         },
         {
           "path": "presentation/server.go",
-          "line": 104,
+          "line": 101,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|4:Stop"
         }
@@ -2915,13 +2932,13 @@
         },
         {
           "path": "presentation/server.go",
-          "line": 65,
+          "line": 62,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|5:Start"
         },
         {
           "path": "presentation/server.go",
-          "line": 104,
+          "line": 101,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|4:Stop"
         }
@@ -2929,7 +2946,7 @@
     },
     {
       "path": "internal/spicegen/petclinic/spice_providers_gen.go",
-      "sha256": "sha256:d3ecbaaf412ef9d172d0c34cf227b67ceb609725a815605dc57e2f0fb4b342d9",
+      "sha256": "sha256:7f6b7f5e45b4037aa15fa7806b724bbe7ec713d6343e45c6e8c91613226b520d",
       "role": "target-providers",
       "related_sources": [
         {
@@ -2937,6 +2954,18 @@
           "line": 23,
           "column": 4,
           "symbol": "spice:symbol:v1|function|36:github.com/spice-framework/petclinic|0:|4:main"
+        },
+        {
+          "path": "memory/configuration.go",
+          "line": 6,
+          "column": 4,
+          "symbol": "spice:symbol:v1|type|43:github.com/spice-framework/petclinic/memory|0:|13:Configuration"
+        },
+        {
+          "path": "memory/configuration.go",
+          "line": 10,
+          "column": 4,
+          "symbol": "spice:symbol:v1|method|43:github.com/spice-framework/petclinic/memory|13:Configuration|17:PetclinicDatabase"
         },
         {
           "path": "memory/owner_repository.go",
@@ -2949,12 +2978,6 @@
           "line": 16,
           "column": 4,
           "symbol": "spice:symbol:v1|type|43:github.com/spice-framework/petclinic/memory|0:|17:PetTypeRepository"
-        },
-        {
-          "path": "memory/seed.go",
-          "line": 16,
-          "column": 4,
-          "symbol": "spice:symbol:v1|function|43:github.com/spice-framework/petclinic/memory|0:|20:NewPetclinicDatabase"
         },
         {
           "path": "memory/vet_repository.go",
@@ -2981,28 +3004,34 @@
           "symbol": "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController"
         },
         {
-          "path": "presentation/catalog.go",
-          "line": 16,
+          "path": "presentation/configuration.go",
+          "line": 13,
           "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|10:NewCatalog"
+          "symbol": "spice:symbol:v1|type|49:github.com/spice-framework/petclinic/presentation|0:|13:Configuration"
         },
         {
-          "path": "presentation/mux.go",
-          "line": 14,
+          "path": "presentation/configuration.go",
+          "line": 17,
           "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|6:NewMux"
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|7:Catalog"
         },
         {
-          "path": "presentation/renderer.go",
-          "line": 20,
+          "path": "presentation/configuration.go",
+          "line": 23,
           "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|11:NewRenderer"
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|3:Mux"
         },
         {
-          "path": "presentation/server.go",
-          "line": 31,
+          "path": "presentation/configuration.go",
+          "line": 30,
           "column": 4,
-          "symbol": "spice:symbol:v1|function|49:github.com/spice-framework/petclinic/presentation|0:|9:NewServer"
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|8:Renderer"
+        },
+        {
+          "path": "presentation/configuration.go",
+          "line": 38,
+          "column": 4,
+          "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|13:Configuration|6:Server"
         },
         {
           "path": "presentation/server_settings.go",
