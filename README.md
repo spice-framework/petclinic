@@ -1,5 +1,7 @@
 # Spice Petclinic
 
+Unified documentation: [spiceframework.dev/examples/petclinic](https://spiceframework.dev/examples/petclinic/).
+
 Spice Petclinic is the standalone reference application for the
 [Spice Framework](https://github.com/spice-framework/spice). It is a
 behavior-first Go port of
