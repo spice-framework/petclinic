@@ -21,12 +21,12 @@ func TestMySQLPetclinicWorkflow(t *testing.T) {
 	ctx, cancel := context.WithTimeout(t.Context(), 30*time.Second)
 	defer cancel()
 
-	database, cleanup, err := OpenDatabase(Settings{
+	database, cleanup, err := NewDatabase(Settings{
 		URL:           connectionURL,
 		AllowInsecure: true,
 	})
 	if err != nil {
-		t.Fatalf("OpenDatabase() error = %v", err)
+		t.Fatalf("NewDatabase() error = %v", err)
 	}
 	t.Cleanup(func() {
 		if cleanupErr := cleanup(t.Context()); cleanupErr != nil {
