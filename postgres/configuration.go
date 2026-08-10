@@ -13,5 +13,5 @@ type Configuration struct{}
 func (*Configuration) Database(
 	settings Settings,
 ) (*Database, lifecycle.Cleanup, error) {
-	return OpenDatabase(settings)
+	return NewDatabase(settings)
 }

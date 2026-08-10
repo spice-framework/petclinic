@@ -7,6 +7,7 @@ toolchain go1.26.5
 tool (
 	github.com/spice-framework/toolchain/cmd/spice
 	github.com/spice-framework/toolchain/cmd/spice-annotation-core
+	github.com/spice-framework/toolchain/cmd/spicestyle
 )
 
 require (
@@ -22,7 +23,7 @@ require (
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
 	github.com/jackc/pgx/v5 v5.10.0 // indirect
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
-	github.com/spice-framework/toolchain v0.1.0-preview.1.0.20260807044408-6598abca8196 // indirect
+	github.com/spice-framework/toolchain v0.1.0-preview.2.0.20260810170203-57cf59f2d895 // indirect
 	golang.org/x/mod v0.38.0 // indirect
 	golang.org/x/sync v0.22.0 // indirect
 	golang.org/x/sys v0.47.0 // indirect

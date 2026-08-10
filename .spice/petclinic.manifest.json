@@ -10,13 +10,13 @@
     "bridge_dir": ".",
     "manifest_path": ".spice/petclinic.manifest.json"
   },
-  "generator_version": "0.1.0-dev",
+  "generator_version": "v0.1.0-preview.2",
   "go_format_line": "1.26",
   "input_sha256": "sha256:c3efed8fbf228e3adc212fe263a0260e646947360d24823a834210b75af79bc1",
   "files": [
     {
       "path": "internal/spicegen/petclinic/artifacts/openapi.json",
-      "sha256": "sha256:4ae9f581b2e574051387c8dd119a810e3d52aeddde3873763ace27341c616a67",
+      "sha256": "sha256:7c6214ae883174cdb84f0ee840f2220467094122ed63b1d024eaad41874fed5a",
       "role": "artifact",
       "related_sources": [
         {
@@ -345,19 +345,19 @@
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 20,
+          "line": 23,
           "column": 4,
           "symbol": "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController"
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 46,
+          "line": 49,
           "column": 4,
           "symbol": "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|7:NewForm"
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 68,
+          "line": 71,
           "column": 4,
           "symbol": "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|6:Create"
         },
@@ -710,11 +710,11 @@
     },
     {
       "path": "internal/spicegen/petclinic/sources/owner/visit_controller_spice_gen.go",
-      "sha256": "sha256:081b48885b9f20d17b633a514bf03454f3ba20fe5e57f22b7326e7938e9376ba",
+      "sha256": "sha256:5e4a07f529c02aeb01c0d1835cfe185fe4db16257171884e96504bb741cf15f6",
       "role": "source-unit",
       "primary_source": {
         "path": "owner/visit_controller.go",
-        "line": 20,
+        "line": 23,
         "column": 4,
         "symbol": "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController"
       },
@@ -724,7 +724,7 @@
           "contribution": "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController",
           "source": {
             "path": "owner/visit_controller.go",
-            "line": 20,
+            "line": 23,
             "column": 4,
             "symbol": "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController"
           },
@@ -1284,19 +1284,19 @@
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 20,
+          "line": 23,
           "column": 4,
           "symbol": "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController"
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 46,
+          "line": 49,
           "column": 4,
           "symbol": "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|7:NewForm"
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 68,
+          "line": 71,
           "column": 4,
           "symbol": "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|6:Create"
         },
@@ -1362,13 +1362,13 @@
         },
         {
           "path": "presentation/server.go",
-          "line": 62,
+          "line": 63,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|5:Start"
         },
         {
           "path": "presentation/server.go",
-          "line": 101,
+          "line": 102,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|4:Stop"
         },
@@ -1575,7 +1575,7 @@
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 20,
+          "line": 23,
           "column": 4,
           "symbol": "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController"
         },
@@ -1611,13 +1611,13 @@
         },
         {
           "path": "presentation/server.go",
-          "line": 62,
+          "line": 63,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|5:Start"
         },
         {
           "path": "presentation/server.go",
-          "line": 101,
+          "line": 102,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|4:Stop"
         },
@@ -1684,13 +1684,13 @@
         },
         {
           "path": "presentation/server.go",
-          "line": 62,
+          "line": 63,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|5:Start"
         },
         {
           "path": "presentation/server.go",
-          "line": 101,
+          "line": 102,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|4:Stop"
         }
@@ -2033,19 +2033,19 @@
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 20,
+          "line": 23,
           "column": 4,
           "symbol": "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController"
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 46,
+          "line": 49,
           "column": 4,
           "symbol": "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|7:NewForm"
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 68,
+          "line": 71,
           "column": 4,
           "symbol": "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|6:Create"
         },
@@ -2705,7 +2705,7 @@
       "related_sources": [
         {
           "path": "owner/visit_controller.go",
-          "line": 68,
+          "line": 71,
           "column": 4,
           "symbol": "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|6:Create"
         },
@@ -2746,7 +2746,7 @@
           "contribution": "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|6:Create",
           "source": {
             "path": "owner/visit_controller.go",
-            "line": 68,
+            "line": 71,
             "column": 4,
             "symbol": "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|6:Create"
           },
@@ -2784,7 +2784,7 @@
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 46,
+          "line": 49,
           "column": 4,
           "symbol": "spice:symbol:v1|method|42:github.com/spice-framework/petclinic/owner|15:VisitController|7:NewForm"
         }
@@ -2932,13 +2932,13 @@
         },
         {
           "path": "presentation/server.go",
-          "line": 62,
+          "line": 63,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|5:Start"
         },
         {
           "path": "presentation/server.go",
-          "line": 101,
+          "line": 102,
           "column": 4,
           "symbol": "spice:symbol:v1|method|49:github.com/spice-framework/petclinic/presentation|6:Server|4:Stop"
         }
@@ -2999,7 +2999,7 @@
         },
         {
           "path": "owner/visit_controller.go",
-          "line": 20,
+          "line": 23,
           "column": 4,
           "symbol": "spice:symbol:v1|type|42:github.com/spice-framework/petclinic/owner|0:|15:VisitController"
         },

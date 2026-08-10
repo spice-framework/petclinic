@@ -10,9 +10,9 @@ import (
 func TestMigrationPlanOwnsCanonicalSchemaAndSeed(t *testing.T) {
 	t.Parallel()
 
-	plan, err := migrationPlan()
+	plan, err := NewMigration(nil).plan()
 	if err != nil {
-		t.Fatalf("migrationPlan() error = %v", err)
+		t.Fatalf("Migration.plan() error = %v", err)
 	}
 	migrations := plan.Migrations()
 	if len(migrations) != 2 {
@@ -51,17 +51,17 @@ func TestOpenDatabaseRejectsInvalidSettingsWithoutLeakingSecret(
 	t.Parallel()
 
 	const secret = "do-not-expose"
-	_, cleanup, err := OpenDatabase(Settings{
+	_, cleanup, err := NewDatabase(Settings{
 		URL: "postgres://petclinic:" + secret + "@missing-port/petclinic",
 	})
 	if err == nil {
-		t.Fatal("OpenDatabase() error = nil")
+		t.Fatal("NewDatabase() error = nil")
 	}
 	if cleanup != nil {
-		t.Fatal("OpenDatabase() cleanup is non-nil after failure")
+		t.Fatal("NewDatabase() cleanup is non-nil after failure")
 	}
 	if strings.Contains(err.Error(), secret) {
-		t.Fatalf("OpenDatabase() exposed secret: %v", err)
+		t.Fatalf("NewDatabase() exposed secret: %v", err)
 	}
 }
 

@@ -6,7 +6,11 @@ import (
 	"fmt"
 )
 
-func validateContext(ctx context.Context) error {
+// Context owns memory-repository context validation.
+type Context struct{}
+
+// Validate rejects nil or cancelled operation contexts.
+func (Context) Validate(ctx context.Context) error {
 	if ctx == nil {
 		return errors.New("memory repository context is nil")
 	}

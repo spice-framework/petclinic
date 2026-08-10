@@ -37,7 +37,7 @@ func (repository *OwnerRepository) FindByID(
 	ctx context.Context,
 	id model.ID,
 ) (owner.Owner, bool, error) {
-	if err := validateContext(ctx, "find owner by ID"); err != nil {
+	if err := (Context{}).Validate(ctx, "find owner by ID"); err != nil {
 		return owner.Owner{}, false, err
 	}
 	if repository == nil ||
@@ -52,11 +52,7 @@ func (repository *OwnerRepository) FindByID(
 			"find owner by ID: ID must be positive",
 		)
 	}
-	value, found, err := loadOwner(
-		ctx,
-		repository.database.native,
-		id,
-	)
+	value, found, err := NewOwnerLoader(repository.database.native).LoadOwner(ctx, id)
 	if err != nil {
 		return owner.Owner{}, false, fmt.Errorf(
 			"find owner by ID: %w",
@@ -73,7 +69,7 @@ func (repository *OwnerRepository) FindByLastName(
 	offset int,
 	limit int,
 ) ([]owner.Owner, int, error) {
-	if err := validateContext(
+	if err := (Context{}).Validate(
 		ctx,
 		"find owners by last name",
 	); err != nil {
@@ -108,7 +104,7 @@ func (repository *OwnerRepository) FindByLastName(
 			err,
 		)
 	}
-	identities, err := findOwnerIDs(
+	identities, err := repository.findOwnerIDs(
 		ctx,
 		native,
 		prefix,
@@ -120,7 +116,7 @@ func (repository *OwnerRepository) FindByLastName(
 	}
 	result := make([]owner.Owner, 0, len(identities))
 	for _, id := range identities {
-		value, found, err := loadOwner(ctx, native, id)
+		value, found, err := NewOwnerLoader(native).LoadOwner(ctx, id)
 		if err != nil {
 			return nil, 0, fmt.Errorf(
 				"find owners by last name: load owner %d: %w",
@@ -139,7 +135,7 @@ func (repository *OwnerRepository) FindByLastName(
 	return result, total, nil
 }
 
-func findOwnerIDs(
+func (repository *OwnerRepository) findOwnerIDs(
 	ctx context.Context,
 	native *sql.DB,
 	prefix string,
@@ -187,7 +183,7 @@ func (repository *OwnerRepository) Save(
 	ctx context.Context,
 	value owner.Owner,
 ) (saved owner.Owner, err error) {
-	if contextErr := validateContext(ctx, "save owner"); contextErr != nil {
+	if contextErr := (Context{}).Validate(ctx, "save owner"); contextErr != nil {
 		return owner.Owner{}, contextErr
 	}
 	if repository == nil ||
@@ -221,11 +217,11 @@ func (repository *OwnerRepository) Save(
 			err = errors.Join(err, rollbackErr)
 		}
 	}()
-	if err := saveOwnerRow(ctx, transaction, &value); err != nil {
+	if err := repository.saveOwnerRow(ctx, transaction, &value); err != nil {
 		return owner.Owner{}, err
 	}
 	for index := range value.Pets {
-		if err := savePet(
+		if err := repository.savePet(
 			ctx,
 			transaction,
 			value.ID,
@@ -244,7 +240,7 @@ func (repository *OwnerRepository) Save(
 	return value.Clone(), nil
 }
 
-func saveOwnerRow(
+func (repository *OwnerRepository) saveOwnerRow(
 	ctx context.Context,
 	transaction *sql.Tx,
 	value *owner.Owner,
@@ -286,7 +282,7 @@ func saveOwnerRow(
 	return nil
 }
 
-func savePet(
+func (repository *OwnerRepository) savePet(
 	ctx context.Context,
 	transaction *sql.Tx,
 	ownerID model.ID,
@@ -330,7 +326,7 @@ func savePet(
 		}
 	}
 	for index := range value.Visits {
-		if err := saveVisit(
+		if err := repository.saveVisit(
 			ctx,
 			transaction,
 			value.ID,
@@ -342,7 +338,7 @@ func savePet(
 	return nil
 }
 
-func saveVisit(
+func (repository *OwnerRepository) saveVisit(
 	ctx context.Context,
 	transaction *sql.Tx,
 	petID model.ID,

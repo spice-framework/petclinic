@@ -62,7 +62,7 @@ func (repository *VetRepository) find(
 	limit int,
 	paged bool,
 ) (values []vet.Vet, total int, err error) {
-	if contextErr := validateContext(
+	if contextErr := (Context{}).Validate(
 		ctx,
 		"find veterinarians",
 	); contextErr != nil {

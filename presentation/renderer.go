@@ -13,6 +13,9 @@ import (
 //go:embed templates/*.html
 var templates embed.FS
 
+// Renderer owns Petclinic's embedded view-template source.
+type Renderer struct{}
+
 // NewRenderer parses all Petclinic templates once during construction.
 func NewRenderer(catalog *i18n.Catalog) (*view.Renderer, error) {
 	return view.Parse(

@@ -31,18 +31,20 @@ func NewDatabase(
 	petTypes []owner.PetType,
 	vets []vet.Vet,
 ) (*Database, error) {
+	petTypesRepository := &PetTypeRepository{}
+	vetsRepository := &VetRepository{}
 	database := &Database{
 		owners:   make(map[model.ID]owner.Owner, len(owners)),
-		petTypes: clonePetTypes(petTypes),
-		vets:     cloneVets(vets),
+		petTypes: petTypesRepository.clonePetTypes(petTypes),
+		vets:     vetsRepository.cloneVets(vets),
 	}
 	if err := database.loadOwners(owners); err != nil {
 		return nil, err
 	}
-	if err := validatePetTypes(database.petTypes); err != nil {
+	if err := petTypesRepository.validatePetTypes(database.petTypes); err != nil {
 		return nil, err
 	}
-	if err := validateVets(database.vets); err != nil {
+	if err := vetsRepository.validateVets(database.vets); err != nil {
 		return nil, err
 	}
 	return database, nil
@@ -69,7 +71,7 @@ func (database *Database) loadOwners(values []owner.Owner) error {
 }
 
 func (database *Database) observeOwnerIDs(value owner.Owner) error {
-	database.nextOwnerID = maxID(database.nextOwnerID, value.ID)
+	database.nextOwnerID = database.maxID(database.nextOwnerID, value.ID)
 	seenPets := make(map[model.ID]struct{}, len(value.Pets))
 	for _, pet := range value.Pets {
 		if !pet.ID.Valid() {
@@ -83,14 +85,14 @@ func (database *Database) observeOwnerIDs(value owner.Owner) error {
 			)
 		}
 		seenPets[pet.ID] = struct{}{}
-		database.nextPetID = maxID(database.nextPetID, pet.ID)
+		database.nextPetID = database.maxID(database.nextPetID, pet.ID)
 		for _, visit := range pet.Visits {
 			if !visit.ID.Valid() {
 				return errors.New(
 					"construct memory database: seeded visit ID must be positive",
 				)
 			}
-			database.nextVisitID = maxID(
+			database.nextVisitID = database.maxID(
 				database.nextVisitID,
 				visit.ID,
 			)
@@ -99,7 +101,7 @@ func (database *Database) observeOwnerIDs(value owner.Owner) error {
 	return nil
 }
 
-func maxID(left, right model.ID) model.ID {
+func (database *Database) maxID(left, right model.ID) model.ID {
 	if right > left {
 		return right
 	}

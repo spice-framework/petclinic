@@ -5,7 +5,11 @@ import (
 	"errors"
 )
 
-func validateContext(ctx context.Context, operation string) error {
+// Context owns MySQL repository context validation.
+type Context struct{}
+
+// Validate rejects nil or cancelled operation contexts.
+func (Context) Validate(ctx context.Context, operation string) error {
 	if ctx == nil {
 		return errors.New(operation + ": context is nil")
 	}

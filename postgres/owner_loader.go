@@ -1,4 +1,4 @@
-package mysql
+package postgres
 
 import (
 	"context"
@@ -10,26 +10,23 @@ import (
 	"github.com/spice-framework/petclinic/owner"
 )
 
-type ownerQuerier interface {
-	QueryContext(
-		context.Context,
-		string,
-		...any,
-	) (*sql.Rows, error)
-	QueryRowContext(
-		context.Context,
-		string,
-		...any,
-	) *sql.Row
+// OwnerLoader reconstructs complete owner aggregates from one SQL querier.
+type OwnerLoader struct {
+	querier ownerQuerier
 }
 
-func loadOwner(
+// NewOwnerLoader constructs an aggregate loader for a database or transaction.
+func NewOwnerLoader(querier ownerQuerier) *OwnerLoader {
+	return &OwnerLoader{querier: querier}
+}
+
+// LoadOwner reconstructs one owner aggregate by identity.
+func (loader *OwnerLoader) LoadOwner(
 	ctx context.Context,
-	querier ownerQuerier,
 	id model.ID,
 ) (owner.Owner, bool, error) {
 	var value owner.Owner
-	err := querier.QueryRowContext(ctx, findOwnerSQL, id).Scan(
+	err := loader.querier.QueryRowContext(ctx, findOwnerSQL, id).Scan(
 		&value.ID,
 		&value.FirstName,
 		&value.LastName,
@@ -41,12 +38,9 @@ func loadOwner(
 		return owner.Owner{}, false, nil
 	}
 	if err != nil {
-		return owner.Owner{}, false, fmt.Errorf(
-			"query owner row: %w",
-			err,
-		)
+		return owner.Owner{}, false, fmt.Errorf("query owner row: %w", err)
 	}
-	pets, err := loadPets(ctx, querier, id)
+	pets, err := loader.loadPets(ctx, id)
 	if err != nil {
 		return owner.Owner{}, false, err
 	}
@@ -54,19 +48,15 @@ func loadOwner(
 	return value, true, nil
 }
 
-func loadPets(
+func (loader *OwnerLoader) loadPets(
 	ctx context.Context,
-	querier ownerQuerier,
 	ownerID model.ID,
 ) (values []owner.Pet, err error) {
-	rows, err := querier.QueryContext(ctx, findPetsSQL, ownerID)
+	rows, err := loader.querier.QueryContext(ctx, findPetsSQL, ownerID)
 	if err != nil {
 		return nil, fmt.Errorf("query owner pets: %w", err)
 	}
-	defer func() {
-		err = errors.Join(err, rows.Close())
-	}()
-
+	defer func() { err = errors.Join(err, rows.Close()) }()
 	for rows.Next() {
 		var value owner.Pet
 		if err := rows.Scan(
@@ -78,7 +68,7 @@ func loadPets(
 		); err != nil {
 			return nil, fmt.Errorf("scan owner pet: %w", err)
 		}
-		visits, err := loadVisits(ctx, querier, value.ID)
+		visits, err := loader.loadVisits(ctx, value.ID)
 		if err != nil {
 			return nil, err
 		}
@@ -94,26 +84,18 @@ func loadPets(
 	return values, nil
 }
 
-func loadVisits(
+func (loader *OwnerLoader) loadVisits(
 	ctx context.Context,
-	querier ownerQuerier,
 	petID model.ID,
 ) (values []owner.Visit, err error) {
-	rows, err := querier.QueryContext(ctx, findVisitsSQL, petID)
+	rows, err := loader.querier.QueryContext(ctx, findVisitsSQL, petID)
 	if err != nil {
 		return nil, fmt.Errorf("query pet visits: %w", err)
 	}
-	defer func() {
-		err = errors.Join(err, rows.Close())
-	}()
-
+	defer func() { err = errors.Join(err, rows.Close()) }()
 	for rows.Next() {
 		var value owner.Visit
-		if err := rows.Scan(
-			&value.ID,
-			&value.Date,
-			&value.Description,
-		); err != nil {
+		if err := rows.Scan(&value.ID, &value.Date, &value.Description); err != nil {
 			return nil, fmt.Errorf("scan pet visit: %w", err)
 		}
 		values = append(values, value)

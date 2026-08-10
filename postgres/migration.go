@@ -3,9 +3,10 @@ package postgres
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"fmt"
 
-	"github.com/spice-framework/spice/migration"
+	spicemigration "github.com/spice-framework/spice/migration"
 	spicepostgres "github.com/spice-framework/starter-postgres"
 )
 
@@ -15,8 +16,18 @@ const (
 	seedVersion       = 202607280102
 )
 
-func migrationPlan() (*migration.Plan, error) {
-	return migration.NewPlan([]migration.Spec{
+// Migration owns the PostgreSQL schema transition plan.
+type Migration struct {
+	native *sql.DB
+}
+
+// NewMigration constructs a PostgreSQL migration runner.
+func NewMigration(native *sql.DB) *Migration {
+	return &Migration{native: native}
+}
+
+func (migration *Migration) plan() (*spicemigration.Plan, error) {
+	return spicemigration.NewPlan([]spicemigration.Spec{
 		{
 			Version: schemaVersion,
 			Module:  petclinicModuleID,
@@ -32,8 +43,15 @@ func migrationPlan() (*migration.Plan, error) {
 	})
 }
 
-func runMigrations(ctx context.Context, native *sql.DB) error {
-	plan, err := migrationPlan()
+// Run applies the module-owned schema and seed plan.
+func (migration *Migration) Run(ctx context.Context) error {
+	if ctx == nil {
+		return errors.New("migrate Petclinic PostgreSQL database: context is nil")
+	}
+	if migration == nil || migration.native == nil {
+		return errors.New("migrate Petclinic PostgreSQL database: database is nil")
+	}
+	plan, err := migration.plan()
 	if err != nil {
 		return fmt.Errorf(
 			"construct Petclinic PostgreSQL migration plan: %w",
@@ -41,7 +59,7 @@ func runMigrations(ctx context.Context, native *sql.DB) error {
 		)
 	}
 	backend, err := spicepostgres.NewMigrationBackend(
-		native,
+		migration.native,
 		spicepostgres.MigrationOptions{},
 	)
 	if err != nil {
@@ -50,7 +68,7 @@ func runMigrations(ctx context.Context, native *sql.DB) error {
 			err,
 		)
 	}
-	runner, err := migration.NewRunner(backend)
+	runner, err := spicemigration.NewRunner(backend)
 	if err != nil {
 		return fmt.Errorf(
 			"construct Petclinic PostgreSQL migration runner: %w",

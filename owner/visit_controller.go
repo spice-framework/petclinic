@@ -4,8 +4,11 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"strconv"
+	"strings"
 	"time"
 
+	"github.com/spice-framework/petclinic/model"
 	"github.com/spice-framework/petclinic/presentation"
 	"github.com/spice-framework/spice/i18n"
 	"github.com/spice-framework/spice/view"
@@ -82,7 +85,7 @@ func (controller *VisitController) Create(
 	visit := Visit{Description: request.Description}
 	parsedDate, parseErr := time.Parse(time.DateOnly, request.Date)
 	if parseErr != nil {
-		binding, err = rejectFieldOnce(
+		binding, err = controller.rejectFieldOnce(
 			binding,
 			"date",
 			"date.invalid",
@@ -99,7 +102,7 @@ func (controller *VisitController) Create(
 		return view.Result{}, err
 	}
 	for _, violation := range validationResult.All() {
-		binding, err = rejectFieldOnce(
+		binding, err = controller.rejectFieldOnce(
 			binding,
 			violation.Field,
 			violation.Code,
@@ -124,7 +127,7 @@ func (controller *VisitController) Create(
 	if _, err := controller.owners.Save(ctx, value); err != nil {
 		return view.Result{}, fmt.Errorf("save pet visit: %w", err)
 	}
-	return ownerRedirect(value.ID)
+	return controller.ownerRedirect(value.ID)
 }
 
 func (controller *VisitController) page(language string) presentation.Page {
@@ -138,4 +141,26 @@ func (controller *VisitController) ownerPet(
 ) (Owner, Pet, error) {
 	pets := PetController{owners: controller.owners}
 	return pets.ownerPet(ctx, ownerID, petID)
+}
+
+func (controller *VisitController) ownerRedirect(id model.ID) (view.Result, error) {
+	return view.SeeOther(
+		"/owners/" + strconv.FormatInt(int64(id), 10),
+	)
+}
+
+func (controller *VisitController) rejectFieldOnce(
+	binding web.BindingResult,
+	field string,
+	code string,
+	message string,
+) (web.BindingResult, error) {
+	if len(binding.Errors().ForField(field)) != 0 {
+		return binding, nil
+	}
+	return binding.Reject(
+		strings.TrimSpace(field),
+		code,
+		message,
+	)
 }

@@ -44,17 +44,18 @@ func NewServer(
 	if handler == nil {
 		return nil, errors.New("construct Petclinic server: handler is nil")
 	}
-	return &Server{
-		httpServer: &http.Server{
-			Addr:              settings.Address,
-			Handler:           securityHeaders(handler),
-			ReadHeaderTimeout: settings.ReadHeaderTimeout,
-			ReadTimeout:       settings.ReadTimeout,
-			WriteTimeout:      settings.WriteTimeout,
-			IdleTimeout:       settings.IdleTimeout,
-		},
+	server := &Server{
 		serveErrors: make(chan error, 1),
-	}, nil
+	}
+	server.httpServer = &http.Server{
+		Addr:              settings.Address,
+		Handler:           server.securityHeaders(handler),
+		ReadHeaderTimeout: settings.ReadHeaderTimeout,
+		ReadTimeout:       settings.ReadTimeout,
+		WriteTimeout:      settings.WriteTimeout,
+		IdleTimeout:       settings.IdleTimeout,
+	}
+	return server, nil
 }
 
 // Start binds the configured listener.
@@ -160,7 +161,7 @@ func (server *Server) Address() string {
 	return server.httpServer.Addr
 }
 
-func securityHeaders(next http.Handler) http.Handler {
+func (server *Server) securityHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(
 		writer http.ResponseWriter,
 		request *http.Request,

@@ -2,12 +2,27 @@ package main
 
 import (
 	"crypto/sha256"
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"slices"
 	"strings"
 	"testing"
 )
+
+type stylePolicy struct {
+	SchemaVersion             int                      `json:"schemaVersion"`
+	Profile                   string                   `json:"profile"`
+	AllowedBoundaryFiles      []string                 `json:"allowedBoundaryFiles"`
+	PackageVariableExceptions []styleVariableException `json:"packageVariableExceptions"`
+}
+
+type styleVariableException struct {
+	Glob   string `json:"glob"`
+	Symbol string `json:"symbol"`
+	Type   string `json:"type"`
+	Issue  string `json:"issue"`
+}
 
 func TestParseTotalCoverage(t *testing.T) {
 	t.Parallel()
@@ -89,6 +104,55 @@ func TestBatchesAndDigestEquality(t *testing.T) {
 		map[string][sha256.Size]byte{"other": digest},
 	) {
 		t.Fatal("equalDigests() = true for different paths")
+	}
+}
+
+func TestStylePolicyOwnsOnlyExactInteropBoundaries(t *testing.T) {
+	t.Parallel()
+	root, err := repositoryRoot()
+	if err != nil {
+		t.Fatal(err)
+	}
+	content, err := os.ReadFile(filepath.Join(root, ".spice", "style.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var policy stylePolicy
+	if err := json.Unmarshal(content, &policy); err != nil {
+		t.Fatal(err)
+	}
+	if policy.SchemaVersion != 1 || policy.Profile != "java-structured" {
+		t.Fatalf("style policy identity = %d/%q", policy.SchemaVersion, policy.Profile)
+	}
+	for _, required := range []string{
+		"mysql/owner_sql.go",
+		"owner/errors.go",
+		"postgres/owner_sql.go",
+		"postgres/schema.go",
+	} {
+		if !slices.Contains(policy.AllowedBoundaryFiles, required) {
+			t.Errorf("style boundary %q is missing", required)
+		}
+	}
+	want := map[string]string{
+		"presentation/assets.go/staticFiles":   "embed.FS/PETCLINIC-STYLE-001",
+		"presentation/catalog.go/messageFiles": "embed.FS/PETCLINIC-STYLE-001",
+		"presentation/renderer.go/templates":   "embed.FS/PETCLINIC-STYLE-001",
+		"owner/errors.go/ErrOwnerNotFound":     "error/PETCLINIC-STYLE-002",
+		"owner/errors.go/ErrPetNotFound":       "error/PETCLINIC-STYLE-002",
+	}
+	if len(policy.PackageVariableExceptions) != len(want) {
+		t.Fatalf(
+			"package-variable exception count = %d, want %d",
+			len(policy.PackageVariableExceptions),
+			len(want),
+		)
+	}
+	for _, exception := range policy.PackageVariableExceptions {
+		key := exception.Glob + "/" + exception.Symbol
+		if got, exists := want[key]; !exists || got != exception.Type+"/"+exception.Issue {
+			t.Errorf("unexpected package-variable exception %#v", exception)
+		}
 	}
 }
 

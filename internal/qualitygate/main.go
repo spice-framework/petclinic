@@ -27,6 +27,7 @@ const (
 	legacyModulePath  = "github.com/spice-framework/spice/examples/" + "petclinic"
 	minimumCoverage   = 85.0
 	spiceTool         = "github.com/spice-framework/toolchain/cmd/spice"
+	styleTool         = "github.com/spice-framework/toolchain/cmd/spicestyle"
 )
 
 var output = log.New(os.Stdout, "", 0)
@@ -70,6 +71,7 @@ func run(ctx context.Context, root, mode string) error {
 			{"repository identity", func() error { return checkIdentity(root) }},
 			{"formatting", func() error { return format(ctx, root, false) }},
 			{"module and vendor", func() error { return checkModule(ctx, root) }},
+			{"Spice application style", func() error { return style(ctx, root) }},
 			{"go vet", func() error { return command(ctx, root, nil, "go", "vet", "./...") }},
 		})
 	case "fmt":
@@ -96,6 +98,7 @@ func run(ctx context.Context, root, mode string) error {
 			{"repository identity", func() error { return checkIdentity(root) }},
 			{"formatting", func() error { return format(ctx, root, false) }},
 			{"module and vendor", func() error { return checkModule(ctx, root) }},
+			{"Spice application style", func() error { return style(ctx, root) }},
 			{"go vet", func() error { return command(ctx, root, nil, "go", "vet", "./...") }},
 			{"lint and nil safety", func() error { return lint(ctx, root) }},
 			{"security", func() error { return security(ctx, root) }},
@@ -344,6 +347,19 @@ func checkModule(ctx context.Context, root string) error {
 		return errors.New("vendor differs from a fresh go mod vendor result")
 	}
 	return nil
+}
+
+func style(ctx context.Context, root string) error {
+	return command(
+		ctx,
+		root,
+		map[string]string{"GOFLAGS": "-mod=vendor"},
+		"go",
+		"tool",
+		styleTool,
+		"--config=.spice/style.json",
+		"./...",
+	)
 }
 
 func treeDigests(root string) (map[string][sha256.Size]byte, error) {

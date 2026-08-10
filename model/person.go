@@ -16,12 +16,12 @@ type Person struct {
 // Validate returns stable, presentation-safe person violations.
 func (person Person) Validate() (validation.Errors, error) {
 	var violations []validation.Violation
-	violations = appendNameViolation(
+	violations = person.appendNameViolation(
 		violations,
 		"firstName",
 		person.FirstName,
 	)
-	violations = appendNameViolation(
+	violations = person.appendNameViolation(
 		violations,
 		"lastName",
 		person.LastName,
@@ -29,7 +29,7 @@ func (person Person) Validate() (validation.Errors, error) {
 	return validation.New(violations...)
 }
 
-func appendNameViolation(
+func (person Person) appendNameViolation(
 	violations []validation.Violation,
 	field string,
 	value string,

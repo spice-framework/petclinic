@@ -13,7 +13,7 @@ import (
 func TestReferenceDatabaseMatchesPetclinicData(t *testing.T) {
 	t.Parallel()
 
-	database, err := NewPetclinicDatabase()
+	database, err := NewSeed().Database()
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -139,7 +139,7 @@ func TestOwnerRepositorySaveIsAtomicAndDefensive(t *testing.T) {
 func TestMemoryRepositoriesHonorCancellationAndConcurrency(t *testing.T) {
 	t.Parallel()
 
-	database, err := NewPetclinicDatabase()
+	database, err := NewSeed().Database()
 	if err != nil {
 		t.Fatal(err)
 	}

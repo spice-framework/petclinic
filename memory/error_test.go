@@ -170,7 +170,7 @@ func TestRepositoryConstructorAndOperationBoundaries(t *testing.T) {
 func TestRepositoryContextAndDefensiveReferenceData(t *testing.T) {
 	t.Parallel()
 
-	database, err := NewPetclinicDatabase()
+	database, err := NewSeed().Database()
 	if err != nil {
 		t.Fatal(err)
 	}

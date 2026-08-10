@@ -73,24 +73,20 @@ func (pet *Pet) AddVisit(visit Visit) error {
 		return errors.New("add visit: pet is nil")
 	}
 	pet.Visits = append(pet.Visits, visit)
-	slices.SortStableFunc(pet.Visits, compareVisits)
+	slices.SortStableFunc(pet.Visits, pet.compareVisits)
 	return nil
 }
 
-func clonePets(values []Pet) []Pet {
-	result := make([]Pet, len(values))
-	for index, value := range values {
-		result[index] = value.Clone()
-	}
-	return result
-}
-
-func comparePets(left, right Pet) int {
-	if compared := strings.Compare(
-		strings.ToLower(left.Name),
-		strings.ToLower(right.Name),
-	); compared != 0 {
+func (pet *Pet) compareVisits(left, right Visit) int {
+	if compared := left.Date.Compare(right.Date); compared != 0 {
 		return compared
 	}
-	return compareID(left.ID, right.ID)
+	switch {
+	case left.ID < right.ID:
+		return -1
+	case left.ID > right.ID:
+		return 1
+	default:
+		return 0
+	}
 }

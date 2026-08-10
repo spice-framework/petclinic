@@ -34,7 +34,7 @@ func NewPetTypeRepository(
 func (repository *PetTypeRepository) FindAll(
 	ctx context.Context,
 ) (result []owner.PetType, err error) {
-	if contextErr := validateContext(
+	if contextErr := (Context{}).Validate(
 		ctx,
 		"find pet types",
 	); contextErr != nil {

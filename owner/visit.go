@@ -34,21 +34,3 @@ func (visit Visit) Validate() (validation.Errors, error) {
 	}
 	return validation.New(violations...)
 }
-
-func compareVisits(left, right Visit) int {
-	if compared := left.Date.Compare(right.Date); compared != 0 {
-		return compared
-	}
-	return compareID(left.ID, right.ID)
-}
-
-func compareID(left, right model.ID) int {
-	switch {
-	case left < right:
-		return -1
-	case left > right:
-		return 1
-	default:
-		return 0
-	}
-}

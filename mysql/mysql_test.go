@@ -10,13 +10,16 @@ import (
 func TestMigrationsOwnCanonicalSchemaAndSeed(t *testing.T) {
 	t.Parallel()
 
+	schema := (Schema{}).Steps()
+	seed := (Schema{}).SeedSteps()
+
 	for _, required := range []string{
 		"CREATE TABLE IF NOT EXISTS owners",
 		"CREATE TABLE IF NOT EXISTS pets",
 		"CREATE TABLE IF NOT EXISTS visits",
 		"unique_owner_pet_name",
 	} {
-		if !strings.Contains(strings.Join(schemaSteps, "\n"), required) {
+		if !strings.Contains(strings.Join(schema, "\n"), required) {
 			t.Fatalf("schema does not contain %q", required)
 		}
 	}
@@ -25,13 +28,14 @@ func TestMigrationsOwnCanonicalSchemaAndSeed(t *testing.T) {
 		"'Samantha'",
 		"'rabies shot'",
 	} {
-		if !strings.Contains(strings.Join(seedSteps, "\n"), required) {
+		if !strings.Contains(strings.Join(seed, "\n"), required) {
 			t.Fatalf("seed does not contain %q", required)
 		}
 	}
-	first := migrationChecksum(schemaSteps)
-	if len(first) != 64 || first != migrationChecksum(schemaSteps) ||
-		first == migrationChecksum(seedSteps) {
+	migrations := NewMigration(nil)
+	first := migrations.checksum(schema)
+	if len(first) != 64 || first != migrations.checksum(schema) ||
+		first == migrations.checksum(seed) {
 		t.Fatalf("migration checksums are not deterministic: %q", first)
 	}
 }
@@ -42,17 +46,17 @@ func TestOpenDatabaseRejectsInvalidSettingsWithoutLeakingSecret(
 	t.Parallel()
 
 	const secret = "do-not-expose"
-	_, cleanup, err := OpenDatabase(Settings{
+	_, cleanup, err := NewDatabase(Settings{
 		URL: "mysql://petclinic:" + secret + "@missing-port/petclinic",
 	})
 	if err == nil {
-		t.Fatal("OpenDatabase() error = nil")
+		t.Fatal("NewDatabase() error = nil")
 	}
 	if cleanup != nil {
-		t.Fatal("OpenDatabase() cleanup is non-nil after failure")
+		t.Fatal("NewDatabase() cleanup is non-nil after failure")
 	}
 	if strings.Contains(err.Error(), secret) {
-		t.Fatalf("OpenDatabase() exposed secret: %v", err)
+		t.Fatalf("NewDatabase() exposed secret: %v", err)
 	}
 }
 

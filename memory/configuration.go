@@ -9,5 +9,5 @@ type Configuration struct{}
 // PetclinicDatabase supplies the deterministic reference data set.
 // @Bean
 func (*Configuration) PetclinicDatabase() (*Database, error) {
-	return NewPetclinicDatabase()
+	return NewSeed().Database()
 }

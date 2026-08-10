@@ -28,7 +28,10 @@ func (owner *Owner) Clone() Owner {
 		return Owner{}
 	}
 	result := *owner
-	result.Pets = clonePets(owner.Pets)
+	result.Pets = make([]Pet, len(owner.Pets))
+	for index := range owner.Pets {
+		result.Pets[index] = owner.Pets[index].Clone()
+	}
 	return result
 }
 
@@ -45,13 +48,13 @@ func (owner *Owner) Validate() (validation.Errors, error) {
 		return validation.Errors{}, err
 	}
 	violations := personErrors.All()
-	violations = appendRequired(
+	violations = owner.appendRequired(
 		violations,
 		"address",
 		owner.Address,
 	)
-	violations = appendRequired(violations, "city", owner.City)
-	if !validTelephone(owner.Telephone) {
+	violations = owner.appendRequired(violations, "city", owner.City)
+	if !owner.validTelephone(owner.Telephone) {
 		violations = append(violations, validation.Violation{
 			Field:   "telephone",
 			Code:    "telephone.invalid",
@@ -101,7 +104,7 @@ func (owner *Owner) AddPet(pet Pet) error {
 		return errors.New("add pet: pet is already persisted")
 	}
 	owner.Pets = append(owner.Pets, pet.Clone())
-	slices.SortStableFunc(owner.Pets, comparePets)
+	slices.SortStableFunc(owner.Pets, owner.comparePets)
 	return nil
 }
 
@@ -121,7 +124,7 @@ func (owner *Owner) AddVisit(
 	return errors.New("add visit: pet was not found")
 }
 
-func appendRequired(
+func (owner *Owner) appendRequired(
 	violations []validation.Violation,
 	field string,
 	value string,
@@ -136,7 +139,7 @@ func appendRequired(
 	})
 }
 
-func validTelephone(value string) bool {
+func (owner *Owner) validTelephone(value string) bool {
 	if len(value) != 10 {
 		return false
 	}
@@ -146,4 +149,21 @@ func validTelephone(value string) bool {
 		}
 	}
 	return true
+}
+
+func (owner *Owner) comparePets(left, right Pet) int {
+	if compared := strings.Compare(
+		strings.ToLower(left.Name),
+		strings.ToLower(right.Name),
+	); compared != 0 {
+		return compared
+	}
+	switch {
+	case left.ID < right.ID:
+		return -1
+	case left.ID > right.ID:
+		return 1
+	default:
+		return 0
+	}
 }

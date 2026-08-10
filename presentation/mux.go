@@ -6,14 +6,17 @@ package presentation
 
 import "net/http"
 
+// Mux owns construction of the application's request multiplexer.
+type Mux struct{}
+
 // NewMux returns an instance-owned Go 1.22 pattern-aware HTTP mux with
 // immutable embedded assets.
 func NewMux() (*http.ServeMux, error) {
 	mux := http.NewServeMux()
-	assets, err := staticHandler()
+	assets, err := NewAssets()
 	if err != nil {
 		return nil, err
 	}
-	mux.Handle("GET /resources/", http.StripPrefix("/resources/", assets))
+	mux.Handle("GET /resources/", http.StripPrefix("/resources/", assets.Handler()))
 	return mux, nil
 }

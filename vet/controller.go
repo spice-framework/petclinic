@@ -54,7 +54,7 @@ func (controller *Controller) ListHTML(
 		page = 1
 	}
 	if page < 1 {
-		return view.Result{}, invalidPage(
+		return view.Result{}, controller.invalidPage(
 			"the page must be positive",
 			fmt.Errorf("page %d is not positive", page),
 		)
@@ -69,7 +69,7 @@ func (controller *Controller) ListHTML(
 	}
 	totalPages := max(1, (total+vetPageSize-1)/vetPageSize)
 	if page > totalPages {
-		return view.Result{}, invalidPage(
+		return view.Result{}, controller.invalidPage(
 			"the requested page does not exist",
 			fmt.Errorf("page %d exceeds %d", page, totalPages),
 		)
@@ -101,7 +101,7 @@ func (controller *Controller) ListJSON(
 	return Vets{VetList: values}, nil
 }
 
-func invalidPage(detail string, cause error) error {
+func (controller *Controller) invalidPage(detail string, cause error) error {
 	return web.NewError(web.Problem{
 		Type:   "https://spice.dev/problems/petclinic-vet-page",
 		Title:  "Invalid veterinarian page",

@@ -64,7 +64,7 @@ func (controller *Controller) Create(
 	binding web.BindingResult,
 ) (view.Result, error) {
 	value := request.Owner()
-	result, err := validateOwnerBinding(value, binding)
+	result, err := controller.validateOwnerBinding(value, binding)
 	if err != nil {
 		return view.Result{}, err
 	}
@@ -191,7 +191,7 @@ func (controller *Controller) Update(
 		return view.Result{}, err
 	}
 	request.Apply(&value)
-	result, err := validateOwnerBinding(value, binding)
+	result, err := controller.validateOwnerBinding(value, binding)
 	if err != nil {
 		return view.Result{}, err
 	}
@@ -237,19 +237,19 @@ func (controller *Controller) owner(
 	id int,
 ) (Owner, error) {
 	if id < 1 {
-		return Owner{}, ownerNotFound(model.ID(id))
+		return Owner{}, controller.ownerNotFound(model.ID(id))
 	}
 	value, found, err := controller.owners.FindByID(ctx, model.ID(id))
 	if err != nil {
 		return Owner{}, fmt.Errorf("find owner %d: %w", id, err)
 	}
 	if !found {
-		return Owner{}, ownerNotFound(model.ID(id))
+		return Owner{}, controller.ownerNotFound(model.ID(id))
 	}
 	return value, nil
 }
 
-func ownerNotFound(id model.ID) error {
+func (controller *Controller) ownerNotFound(id model.ID) error {
 	return web.NewError(web.Problem{
 		Type:   "https://spice.dev/problems/petclinic-owner-not-found",
 		Title:  "Owner not found",
@@ -258,7 +258,7 @@ func ownerNotFound(id model.ID) error {
 	}, fmt.Errorf("owner %d: %w", id, ErrOwnerNotFound))
 }
 
-func validateOwnerBinding(
+func (controller *Controller) validateOwnerBinding(
 	value Owner,
 	binding web.BindingResult,
 ) (web.BindingResult, error) {

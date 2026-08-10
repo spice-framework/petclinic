@@ -73,10 +73,11 @@ github.com/spice-framework/starter-mysql
 # github.com/spice-framework/starter-postgres v0.0.0-20260805182646-6310c4b4b95e
 ## explicit; go 1.26.0
 github.com/spice-framework/starter-postgres
-# github.com/spice-framework/toolchain v0.1.0-preview.1.0.20260807044408-6598abca8196
+# github.com/spice-framework/toolchain v0.1.0-preview.2.0.20260810170203-57cf59f2d895
 ## explicit; go 1.26.0
 github.com/spice-framework/toolchain/cmd/spice
 github.com/spice-framework/toolchain/cmd/spice-annotation-core
+github.com/spice-framework/toolchain/cmd/spicestyle
 github.com/spice-framework/toolchain/compiler/annotationcatalog
 github.com/spice-framework/toolchain/compiler/annotationhost
 github.com/spice-framework/toolchain/compiler/annotationimport
@@ -119,6 +120,7 @@ github.com/spice-framework/toolchain/internal/identity
 github.com/spice-framework/toolchain/internal/lsp
 github.com/spice-framework/toolchain/internal/moduleenv
 github.com/spice-framework/toolchain/internal/scaffold
+github.com/spice-framework/toolchain/internal/style
 # golang.org/x/mod v0.38.0
 ## explicit; go 1.25.0
 golang.org/x/mod/internal/lazyregexp
@@ -149,6 +151,15 @@ golang.org/x/text/unicode/norm
 golang.org/x/text/width
 # golang.org/x/tools v0.48.0
 ## explicit; go 1.25.0
+golang.org/x/tools/go/analysis
+golang.org/x/tools/go/analysis/checker
+golang.org/x/tools/go/analysis/internal
+golang.org/x/tools/go/analysis/internal/analysisflags
+golang.org/x/tools/go/analysis/internal/checker
+golang.org/x/tools/go/analysis/multichecker
+golang.org/x/tools/go/analysis/passes/inspect
+golang.org/x/tools/go/analysis/unitchecker
+golang.org/x/tools/go/ast/astutil
 golang.org/x/tools/go/ast/edge
 golang.org/x/tools/go/ast/inspector
 golang.org/x/tools/go/gcexportdata
@@ -156,10 +167,15 @@ golang.org/x/tools/go/packages
 golang.org/x/tools/go/types/objectpath
 golang.org/x/tools/go/types/typeutil
 golang.org/x/tools/internal/aliases
+golang.org/x/tools/internal/analysis/driverutil
+golang.org/x/tools/internal/astutil/free
+golang.org/x/tools/internal/diff
+golang.org/x/tools/internal/diff/lcs
 golang.org/x/tools/internal/event
 golang.org/x/tools/internal/event/core
 golang.org/x/tools/internal/event/keys
 golang.org/x/tools/internal/event/label
+golang.org/x/tools/internal/facts
 golang.org/x/tools/internal/gcimporter
 golang.org/x/tools/internal/gocommand
 golang.org/x/tools/internal/packagesinternal

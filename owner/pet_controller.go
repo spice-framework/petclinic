@@ -127,7 +127,7 @@ func (controller *PetController) Create(
 	if _, err := controller.owners.Save(ctx, value); err != nil {
 		return view.Result{}, fmt.Errorf("save owner pet: %w", err)
 	}
-	return ownerRedirect(value.ID)
+	return controller.ownerRedirect(value.ID)
 }
 
 // EditForm renders one existing pet for editing.
@@ -218,7 +218,7 @@ func (controller *PetController) Update(
 	if _, err := controller.owners.Save(ctx, value); err != nil {
 		return view.Result{}, fmt.Errorf("save edited pet: %w", err)
 	}
-	return ownerRedirect(value.ID)
+	return controller.ownerRedirect(value.ID)
 }
 
 func (controller *PetController) page(language string) presentation.Page {
@@ -236,7 +236,7 @@ func (controller *PetController) pet(
 	pet.Name = name
 	parsedDate, err := time.Parse(time.DateOnly, birthDate)
 	if err != nil {
-		binding, err = rejectFieldOnce(
+		binding, err = controller.rejectFieldOnce(
 			binding,
 			"birthDate",
 			"date.invalid",
@@ -259,7 +259,7 @@ func (controller *PetController) pet(
 		return Pet{}, web.BindingResult{}, err
 	}
 	for _, violation := range validationResult.All() {
-		binding, err = rejectFieldOnce(
+		binding, err = controller.rejectFieldOnce(
 			binding,
 			violation.Field,
 			violation.Code,
@@ -277,14 +277,14 @@ func (controller *PetController) owner(
 	id int,
 ) (Owner, error) {
 	if id < 1 {
-		return Owner{}, ownerNotFound(model.ID(id))
+		return Owner{}, controller.ownerNotFound(model.ID(id))
 	}
 	value, found, err := controller.owners.FindByID(ctx, model.ID(id))
 	if err != nil {
 		return Owner{}, fmt.Errorf("find pet owner %d: %w", id, err)
 	}
 	if !found {
-		return Owner{}, ownerNotFound(model.ID(id))
+		return Owner{}, controller.ownerNotFound(model.ID(id))
 	}
 	return value, nil
 }
@@ -300,7 +300,7 @@ func (controller *PetController) ownerPet(
 	}
 	pet, found := value.PetByID(model.ID(petID))
 	if petID < 1 || !found {
-		return Owner{}, Pet{}, petNotFound(
+		return Owner{}, Pet{}, controller.petNotFound(
 			model.ID(ownerID),
 			model.ID(petID),
 		)
@@ -318,7 +318,16 @@ func (controller *PetController) types(
 	return types, nil
 }
 
-func petNotFound(ownerID, petID model.ID) error {
+func (controller *PetController) ownerNotFound(id model.ID) error {
+	return web.NewError(web.Problem{
+		Type:   "https://spice.dev/problems/petclinic-owner-not-found",
+		Title:  "Owner not found",
+		Status: http.StatusNotFound,
+		Detail: "The requested owner does not exist.",
+	}, fmt.Errorf("owner %d: %w", id, ErrOwnerNotFound))
+}
+
+func (controller *PetController) petNotFound(ownerID, petID model.ID) error {
 	return web.NewError(web.Problem{
 		Type:   "https://spice.dev/problems/petclinic-pet-not-found",
 		Title:  "Pet not found",
@@ -332,13 +341,13 @@ func petNotFound(ownerID, petID model.ID) error {
 	))
 }
 
-func ownerRedirect(id model.ID) (view.Result, error) {
+func (controller *PetController) ownerRedirect(id model.ID) (view.Result, error) {
 	return view.SeeOther(
 		"/owners/" + strconv.FormatInt(int64(id), 10),
 	)
 }
 
-func rejectFieldOnce(
+func (controller *PetController) rejectFieldOnce(
 	binding web.BindingResult,
 	field string,
 	code string,

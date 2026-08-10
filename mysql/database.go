@@ -21,10 +21,10 @@ type Database struct {
 	native *sql.DB
 }
 
-// OpenDatabase constructs the MySQL pool without hidden environment reads or
+// NewDatabase constructs the MySQL pool without hidden environment reads or
 // network I/O. Spice registers the returned cleanup immediately when invoked
 // by Configuration.Database.
-func OpenDatabase(
+func NewDatabase(
 	settings Settings,
 ) (*Database, lifecycle.Cleanup, error) {
 	native, err := spicemysql.Open(spicemysql.Options{
@@ -39,12 +39,12 @@ func OpenDatabase(
 		)
 	}
 	database := &Database{native: native}
-	return database, closeDatabase(native), nil
+	return database, database.cleanup(), nil
 }
 
-func closeDatabase(native *sql.DB) lifecycle.Cleanup {
+func (database *Database) cleanup() lifecycle.Cleanup {
 	return func(context.Context) error {
-		if err := native.Close(); err != nil {
+		if err := database.native.Close(); err != nil {
 			return fmt.Errorf("close Petclinic MySQL database: %w", err)
 		}
 		return nil
@@ -68,7 +68,7 @@ func (database *Database) Migrate(ctx context.Context) error {
 	if err := spicemysql.Ping(ctx, database.native); err != nil {
 		return fmt.Errorf("migrate Petclinic MySQL database: %w", err)
 	}
-	if err := runMigrations(ctx, database.native); err != nil {
+	if err := NewMigration(database.native).Run(ctx); err != nil {
 		return err
 	}
 	return nil

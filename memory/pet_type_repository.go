@@ -35,7 +35,7 @@ func NewPetTypeRepository(
 func (repository *PetTypeRepository) FindAll(
 	ctx context.Context,
 ) ([]owner.PetType, error) {
-	if err := validateContext(ctx); err != nil {
+	if err := (Context{}).Validate(ctx); err != nil {
 		return nil, err
 	}
 	if repository == nil || repository.database == nil {
@@ -45,10 +45,10 @@ func (repository *PetTypeRepository) FindAll(
 	}
 	repository.database.mu.RLock()
 	defer repository.database.mu.RUnlock()
-	return clonePetTypes(repository.database.petTypes), nil
+	return repository.clonePetTypes(repository.database.petTypes), nil
 }
 
-func clonePetTypes(values []owner.PetType) []owner.PetType {
+func (repository *PetTypeRepository) clonePetTypes(values []owner.PetType) []owner.PetType {
 	result := slices.Clone(values)
 	slices.SortStableFunc(result, func(
 		left owner.PetType,
@@ -62,7 +62,7 @@ func clonePetTypes(values []owner.PetType) []owner.PetType {
 	return result
 }
 
-func validatePetTypes(values []owner.PetType) error {
+func (repository *PetTypeRepository) validatePetTypes(values []owner.PetType) error {
 	seen := make(map[string]struct{}, len(values))
 	for _, value := range values {
 		name := strings.ToLower(strings.TrimSpace(value.Name))

@@ -23,8 +23,8 @@ github.com/spice-framework/starter-mysql v0.0.0-20260805191832-cc9a2c5034d0 h1:/
 github.com/spice-framework/starter-mysql v0.0.0-20260805191832-cc9a2c5034d0/go.mod h1:H8sSFr8CB/YSajgfIYNdNHFUQx4gIshXdyZhgVdV6/g=
 github.com/spice-framework/starter-postgres v0.0.0-20260805182646-6310c4b4b95e h1:+cOgyPtSYgqMSvCDvnc6sI21KlKYNTNv7E7irMaK63s=
 github.com/spice-framework/starter-postgres v0.0.0-20260805182646-6310c4b4b95e/go.mod h1:a2J43MLPcxTVqrrUhU43KK6AniO1FzOX0rWn4ogMoAE=
-github.com/spice-framework/toolchain v0.1.0-preview.1.0.20260807044408-6598abca8196 h1:R5veBVV9urSCvkHs8Hu+6AXRAOnvDL2agJcuokkerV4=
-github.com/spice-framework/toolchain v0.1.0-preview.1.0.20260807044408-6598abca8196/go.mod h1:LZ04RGO793x7rSetV5T8xZnGvXjbI8u6WCyzdwN2wOI=
+github.com/spice-framework/toolchain v0.1.0-preview.2.0.20260810170203-57cf59f2d895 h1:Db+wYxvnOjOqlXRkummvZiI4YjMNsfm5IMehwlhdeFk=
+github.com/spice-framework/toolchain v0.1.0-preview.2.0.20260810170203-57cf59f2d895/go.mod h1:rbGEwM88w4QZc1Aww/uE2B7W8hwY9KW0ts88ox064fE=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=

@@ -7,11 +7,12 @@
   },
   "toolchain": {
     "module": "github.com/spice-framework/toolchain",
-    "minimum": "v0.1.0-preview.1.0.20260807044408-6598abca8196",
-    "current": "v0.1.0-preview.1.0.20260807044408-6598abca8196",
+    "minimum": "v0.1.0-preview.2.0.20260810170203-57cf59f2d895",
+    "current": "v0.1.0-preview.2.0.20260810170203-57cf59f2d895",
     "tools": [
       "github.com/spice-framework/toolchain/cmd/spice",
-      "github.com/spice-framework/toolchain/cmd/spice-annotation-core"
+      "github.com/spice-framework/toolchain/cmd/spice-annotation-core",
+      "github.com/spice-framework/toolchain/cmd/spicestyle"
     ]
   }
 }

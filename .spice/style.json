@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "profile": "java-structured",
+  "sourceRoots": [
+    "cmd",
+    "memory",
+    "model",
+    "mysql",
+    "owner",
+    "postgres",
+    "presentation",
+    "system",
+    "vet"
+  ],
+  "generatedRoots": [
+    "internal/spicegen"
+  ],
+  "rules": {
+    "onePrimaryTypePerFile": "error",
+    "methodsInPrimaryTypeFile": "error",
+    "fileNameMatchesType": "error",
+    "packageFunctions": "error",
+    "explicitConstructors": "error",
+    "explicitManagedScopes": "error",
+    "banInit": "error",
+    "banMutablePackageState": "error",
+    "privateManagedFields": "error",
+    "moduleOwnership": "error",
+    "routeClassification": "error",
+    "contextFirst": "error",
+    "errorLast": "error",
+    "maxTypeFileLines": 500
+  },
+  "publicRoutes": [],
+  "allowedBoundaryFiles": [
+    "**/doc.go",
+    "**/main.go",
+    "**/*_bean.go",
+    "**/*_topic.go",
+    "mysql/owner_sql.go",
+    "owner/errors.go",
+    "postgres/owner_sql.go",
+    "postgres/schema.go",
+    "**/*_test.go",
+    "internal/spicegen/**"
+  ],
+  "packageFunctionExceptions": [
+    {
+      "glob": "**/main.go",
+      "symbol": "main",
+      "reason": "Go process entrypoint"
+    },
+    {
+      "glob": "**/*_bean.go",
+      "contributionKind": "provider",
+      "maximum": 1,
+      "reason": "Exact Spice provider boundary"
+    },
+    {
+      "glob": "**/*_topic.go",
+      "contributionKind": "event-topic",
+      "maximum": 1,
+      "reason": "Typed Spice event topic marker"
+    },
+    {
+      "glob": "**/*_test.go",
+      "symbolPattern": "^(Test|Benchmark|Fuzz|Example|TestMain)",
+      "reason": "Go testing entrypoint"
+    }
+  ],
+  "packageVariableExceptions": [
+    {
+      "glob": "presentation/assets.go",
+      "symbol": "staticFiles",
+      "type": "embed.FS",
+      "reason": "Go embed requires a package variable",
+      "issue": "PETCLINIC-STYLE-001"
+    },
+    {
+      "glob": "presentation/catalog.go",
+      "symbol": "messageFiles",
+      "type": "embed.FS",
+      "reason": "Go embed requires a package variable",
+      "issue": "PETCLINIC-STYLE-001"
+    },
+    {
+      "glob": "presentation/renderer.go",
+      "symbol": "templates",
+      "type": "embed.FS",
+      "reason": "Go embed requires a package variable",
+      "issue": "PETCLINIC-STYLE-001"
+    },
+    {
+      "glob": "owner/errors.go",
+      "symbol": "ErrOwnerNotFound",
+      "type": "error",
+      "reason": "Public errors.Is sentinel preserves repository interoperability",
+      "issue": "PETCLINIC-STYLE-002"
+    },
+    {
+      "glob": "owner/errors.go",
+      "symbol": "ErrPetNotFound",
+      "type": "error",
+      "reason": "Public errors.Is sentinel preserves repository interoperability",
+      "issue": "PETCLINIC-STYLE-002"
+    }
+  ]
+}

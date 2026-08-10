@@ -35,7 +35,7 @@ func (repository *OwnerRepository) FindByID(
 	ctx context.Context,
 	id model.ID,
 ) (owner.Owner, bool, error) {
-	if err := validateContext(ctx); err != nil {
+	if err := (Context{}).Validate(ctx); err != nil {
 		return owner.Owner{}, false, err
 	}
 	if repository == nil || repository.database == nil {
@@ -59,7 +59,7 @@ func (repository *OwnerRepository) FindByLastName(
 	offset int,
 	limit int,
 ) ([]owner.Owner, int, error) {
-	if err := validateContext(ctx); err != nil {
+	if err := (Context{}).Validate(ctx); err != nil {
 		return nil, 0, err
 	}
 	if repository == nil || repository.database == nil {
@@ -89,7 +89,7 @@ func (repository *OwnerRepository) FindByLastName(
 			result = append(result, candidate.Clone())
 		}
 	}
-	slices.SortStableFunc(result, compareOwners)
+	slices.SortStableFunc(result, repository.compareOwners)
 	total := len(result)
 	if offset >= total {
 		return []owner.Owner{}, total, nil
@@ -103,7 +103,7 @@ func (repository *OwnerRepository) Save(
 	ctx context.Context,
 	value owner.Owner,
 ) (owner.Owner, error) {
-	if err := validateContext(ctx); err != nil {
+	if err := (Context{}).Validate(ctx); err != nil {
 		return owner.Owner{}, err
 	}
 	if repository == nil || repository.database == nil {
@@ -128,12 +128,12 @@ func (repository *OwnerRepository) Save(
 			"save owner: persisted owner was not found",
 		)
 	}
-	assignAggregateIDs(repository.database, &value)
+	repository.assignAggregateIDs(repository.database, &value)
 	repository.database.owners[value.ID] = value.Clone()
 	return value.Clone(), nil
 }
 
-func assignAggregateIDs(database *Database, value *owner.Owner) {
+func (repository *OwnerRepository) assignAggregateIDs(database *Database, value *owner.Owner) {
 	for petIndex := range value.Pets {
 		pet := &value.Pets[petIndex]
 		if pet.New() {
@@ -150,7 +150,7 @@ func assignAggregateIDs(database *Database, value *owner.Owner) {
 	}
 }
 
-func compareOwners(left, right owner.Owner) int {
+func (repository *OwnerRepository) compareOwners(left, right owner.Owner) int {
 	if compared := strings.Compare(
 		strings.ToLower(left.LastName),
 		strings.ToLower(right.LastName),
@@ -163,10 +163,10 @@ func compareOwners(left, right owner.Owner) int {
 	); compared != 0 {
 		return compared
 	}
-	return compareModelID(left.ID, right.ID)
+	return repository.compareModelID(left.ID, right.ID)
 }
 
-func compareModelID(left, right model.ID) int {
+func (repository *OwnerRepository) compareModelID(left, right model.ID) int {
 	switch {
 	case left < right:
 		return -1

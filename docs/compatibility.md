@@ -15,9 +15,11 @@ pair is a pinned forward-compatibility signal, not a moving dependency.
 Branch names, aliases such as `latest`, malformed versions, undeclared tools,
 missing requirements, and mismatched MVS selection fail closed.
 
-The Java-structured configuration source contract raises both boundaries to
-core `v0.1.0-preview.1.0.20260807050649-46ba4660cfb0` and toolchain
-`v0.1.0-preview.1.0.20260807044408-6598abca8196`. Because minimum and current
+The Java-structured configuration source contract keeps the core boundary at
+`v0.1.0-preview.1.0.20260807050649-46ba4660cfb0` and raises the toolchain
+boundary to `v0.1.0-preview.2.0.20260810170203-57cf59f2d895`. That exact
+toolchain revision supplies the strict `spicestyle` command and typed
+package-state exception schema used by Petclinic. Because minimum and current
 currently coincide, `-line=all` performs one combined `minimum/current`
 verification run. A later compatible pair can advance `current` independently;
 the schema never infers a toolchain version from a core-only version change.
@@ -29,8 +31,9 @@ For each boundary the compatibility runner:
 2. creates an isolated alternate modfile while preserving every starter and
    application requirement, plus an isolated application mirror with a
    boundary-specific vendor tree for Spice compiler execution;
-3. asserts both exact MVS-selected modules and verifies that both authorized
-   tool packages are `main` packages from the selected toolchain version;
+3. asserts both exact MVS-selected modules and verifies that all three
+   authorized tool packages are `main` packages from the selected toolchain
+   version;
 4. discovers every Petclinic product and generated package, then runs `go vet`
    and `go test -race -shuffle=on -count=1`;
 5. executes `go tool github.com/spice-framework/toolchain/cmd/spice` to verify,

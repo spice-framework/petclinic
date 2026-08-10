@@ -33,7 +33,7 @@ func NewVetRepository(database *Database) (*VetRepository, error) {
 func (repository *VetRepository) FindAll(
 	ctx context.Context,
 ) ([]vet.Vet, error) {
-	if err := validateContext(ctx); err != nil {
+	if err := (Context{}).Validate(ctx); err != nil {
 		return nil, err
 	}
 	if repository == nil || repository.database == nil {
@@ -43,7 +43,7 @@ func (repository *VetRepository) FindAll(
 	}
 	repository.database.mu.RLock()
 	defer repository.database.mu.RUnlock()
-	return cloneVets(repository.database.vets), nil
+	return repository.cloneVets(repository.database.vets), nil
 }
 
 // FindPage returns one bounded page and the total veterinarian count.
@@ -73,7 +73,7 @@ func (repository *VetRepository) FindPage(
 	return values[offset:min(offset+limit, total)], total, nil
 }
 
-func cloneVets(values []vet.Vet) []vet.Vet {
+func (repository *VetRepository) cloneVets(values []vet.Vet) []vet.Vet {
 	result := make([]vet.Vet, len(values))
 	for index, value := range values {
 		result[index] = value.Clone()
@@ -93,7 +93,7 @@ func cloneVets(values []vet.Vet) []vet.Vet {
 	return result
 }
 
-func validateVets(values []vet.Vet) error {
+func (repository *VetRepository) validateVets(values []vet.Vet) error {
 	for _, value := range values {
 		if !value.ID.Valid() {
 			return errors.New(

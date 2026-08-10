@@ -21,7 +21,8 @@ is implemented by the cross-platform Go program in `internal/qualitygate` and
 also runs directly on Windows as `go run ./internal/qualitygate`.
 
 The gate checks formatting, module and vendor reproducibility, vet, the
-allowlisted linter policy, NilAway, gosec, govulncheck, shuffled and race tests,
+canonical Spice application style, the allowlisted linter policy, NilAway,
+gosec, govulncheck, shuffled and race tests,
 an 85% business-source coverage floor, vendor-offline tests, all three Spice
 generation targets, normal Go builds, and executable `-check` smoke paths.
 
@@ -31,6 +32,8 @@ explicit test URLs are present; it never starts or downloads services.
 
 ## Application invariants
 
+- Handwritten application source conforms to `.spice/style.json` and the
+  canonical Spice `CODE_STYLE.md`; `spicestyle` runs offline in every check.
 - Handwritten source remains ordinary valid Go.
 - Annotations remain declaration comments resolved through explicit imports.
 - Generated code mirrors source ownership under `internal/spicegen/<target>`

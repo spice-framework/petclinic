@@ -37,7 +37,13 @@ toy dependency-injection graph:
 - separate PostgreSQL 18 and MySQL 8.4 application graphs with module-owned
   migrations, secure defaults, transactions, and real integration tests.
 
-The application source uses one named domain type per file where practical.
+The application source follows the canonical Spice application standard
+without advisory wording: one primary named type per ordinary production file,
+methods colocated with that type, explicit constructors and managed scopes, no
+loose package functions, and no mutable package state. The strict
+`.spice/style.json` contract is enforced by `spicestyle` in both `make check`
+and `make verify`; the small interop exception inventory is documented in
+[`docs/code-style.md`](docs/code-style.md).
 Generated code is committed beneath `internal/spicegen/<target>` and mirrors
 the handwritten package/file ownership in `sources/`. Target-wide contracts,
 providers, lifecycle, features, and HTTP wiring are split into named files.
@@ -82,8 +88,9 @@ forces `GOPROXY=off` so verification cannot hide a missing bootstrap dependency
 behind a network download.
 
 The cross-platform quality gate enforces formatting, tidy/vendor
-reproducibility, vet, allowlisted linting, nil safety, security and vulnerability
-analysis, shuffled/race tests, at least 85% business-source coverage,
+reproducibility, canonical Spice application style, vet, allowlisted linting,
+nil safety, security and vulnerability analysis, shuffled/race tests, at least
+85% business-source coverage,
 vendor-offline builds, generated freshness, and executable checks for all
 three targets.
 
