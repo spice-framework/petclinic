@@ -19,8 +19,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/spice-framework/spice v0.1.0-preview.1.0.20260807050649-46ba4660cfb0 h1:DHrCK+1kKRibnNehcEQwHF3LGf3QkPGdM0LhRlhKEJg=
 github.com/spice-framework/spice v0.1.0-preview.1.0.20260807050649-46ba4660cfb0/go.mod h1:dBZV5UZcbY6pzhfGNtvAwQIJ8YsFna+jf1SAlmukJfk=
-github.com/spice-framework/starter-mysql v0.0.0-20260805191832-cc9a2c5034d0 h1:/HZ31+m2AzjqRuE/a3npHZcImI1dOh+rUK+dqXJET6E=
-github.com/spice-framework/starter-mysql v0.0.0-20260805191832-cc9a2c5034d0/go.mod h1:H8sSFr8CB/YSajgfIYNdNHFUQx4gIshXdyZhgVdV6/g=
+github.com/spice-framework/starter-mysql v0.1.0-preview.1 h1:HADT8YRHpzaerhgk4biihTxxSL+wDIXKN2OKdNkQ2XQ=
+github.com/spice-framework/starter-mysql v0.1.0-preview.1/go.mod h1:px6sBI40JrnMk6H/kXQgmfOZIuWhTuVO+lOSFrQIc8o=
 github.com/spice-framework/starter-postgres v0.0.0-20260805182646-6310c4b4b95e h1:+cOgyPtSYgqMSvCDvnc6sI21KlKYNTNv7E7irMaK63s=
 github.com/spice-framework/starter-postgres v0.0.0-20260805182646-6310c4b4b95e/go.mod h1:a2J43MLPcxTVqrrUhU43KK6AniO1FzOX0rWn4ogMoAE=
 github.com/spice-framework/toolchain v0.1.0-preview.2.0.20260810170203-57cf59f2d895 h1:Db+wYxvnOjOqlXRkummvZiI4YjMNsfm5IMehwlhdeFk=
